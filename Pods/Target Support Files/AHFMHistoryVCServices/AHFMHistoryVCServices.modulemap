@@ -1,0 +1,6 @@
+framework module AHFMHistoryVCServices {
+  umbrella header "AHFMHistoryVCServices-umbrella.h"
+
+  export *
+  module * { export * }
+}

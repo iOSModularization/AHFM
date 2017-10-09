@@ -1,0 +1,6 @@
+framework module AHFMEpisodeListVC {
+  umbrella header "AHFMEpisodeListVC-umbrella.h"
+
+  export *
+  module * { export * }
+}

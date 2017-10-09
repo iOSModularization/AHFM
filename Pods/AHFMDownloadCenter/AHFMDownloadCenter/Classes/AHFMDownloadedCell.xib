@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="120" id="KGk-i7-Jjw" customClass="AHFMDownloadedCell" customModule="AHFMDownloadCenter" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="356" height="120"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="356" height="120"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PY4-7d-dbW">
+                        <rect key="frame" x="16" y="19" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="vrx-gX-IFw"/>
+                            <constraint firstAttribute="height" constant="80" id="yGf-e8-foZ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 downloaded" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pI4-rf-fHs">
+                        <rect key="frame" x="112" y="67" width="98" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAR-yX-sXc">
+                        <rect key="frame" x="108" y="38" width="33.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23.4MB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19K-Vg-DSM">
+                        <rect key="frame" x="226" y="67" width="51" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Li3-WW-KUM">
+                        <rect key="frame" x="310" y="45" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="SAB-Yg-v7A"/>
+                            <constraint firstAttribute="height" constant="30" id="s2o-Zk-wo5"/>
+                        </constraints>
+                        <state key="normal" image="download-trash-can"/>
+                        <connections>
+                            <action selector="deleteEpisode:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="njo-8g-Bps"/>
+                        </connections>
+                    </button>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAB-oK-J58">
+                        <rect key="frame" x="141.5" y="38" width="10" height="10"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="VvH-lO-2xY"/>
+                            <constraint firstAttribute="width" constant="10" id="xbc-Zu-6bK"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.clipToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="kAR-yX-sXc" firstAttribute="leading" secondItem="PY4-7d-dbW" secondAttribute="trailing" constant="12" id="0In-7f-rOV"/>
+                    <constraint firstItem="MAB-oK-J58" firstAttribute="leading" secondItem="kAR-yX-sXc" secondAttribute="trailing" id="2ZV-it-WgZ"/>
+                    <constraint firstItem="PY4-7d-dbW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="7vJ-5k-3Oc"/>
+                    <constraint firstItem="Li3-WW-KUM" firstAttribute="leading" secondItem="kAR-yX-sXc" secondAttribute="trailing" priority="750" constant="16" id="OiP-ds-qLa"/>
+                    <constraint firstItem="pI4-rf-fHs" firstAttribute="top" secondItem="PY4-7d-dbW" secondAttribute="centerY" constant="8" id="OmY-bg-Ibe"/>
+                    <constraint firstItem="19K-Vg-DSM" firstAttribute="leading" secondItem="pI4-rf-fHs" secondAttribute="trailing" constant="16" id="Ykt-pA-6bM"/>
+                    <constraint firstItem="19K-Vg-DSM" firstAttribute="bottom" secondItem="pI4-rf-fHs" secondAttribute="bottom" id="eJ4-hZ-xCr"/>
+                    <constraint firstItem="MAB-oK-J58" firstAttribute="top" secondItem="kAR-yX-sXc" secondAttribute="top" id="hXE-OP-yXZ"/>
+                    <constraint firstItem="Li3-WW-KUM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kmi-G4-scr"/>
+                    <constraint firstItem="kAR-yX-sXc" firstAttribute="bottom" secondItem="PY4-7d-dbW" secondAttribute="centerY" id="pn3-9G-Aaa"/>
+                    <constraint firstItem="PY4-7d-dbW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="pzP-9s-DeA"/>
+                    <constraint firstItem="pI4-rf-fHs" firstAttribute="leading" secondItem="PY4-7d-dbW" secondAttribute="trailing" constant="16" id="u0K-nb-BZQ"/>
+                    <constraint firstAttribute="trailing" secondItem="Li3-WW-KUM" secondAttribute="trailing" constant="16" id="wli-KL-5gI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="deleteBtn" destination="Li3-WW-KUM" id="GTJ-iu-0kT"/>
+                <outlet property="hasNewDownloadView" destination="MAB-oK-J58" id="uAS-kz-J6O"/>
+                <outlet property="numberOfDownloaded" destination="pI4-rf-fHs" id="DGV-SM-A6M"/>
+                <outlet property="showCover" destination="PY4-7d-dbW" id="Opa-8R-jQp"/>
+                <outlet property="showTitleLabel" destination="kAR-yX-sXc" id="JJK-VW-WCQ"/>
+                <outlet property="totalDownloadedSize" destination="19K-Vg-DSM" id="xIW-wJ-SZh"/>
+            </connections>
+            <point key="canvasLocation" x="74" y="-61"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="download-trash-can" width="30" height="30"/>
+    </resources>
+</document>

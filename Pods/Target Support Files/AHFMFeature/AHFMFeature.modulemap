@@ -1,0 +1,6 @@
+framework module AHFMFeature {
+  umbrella header "AHFMFeature-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module AHNibLoadable {
+  umbrella header "AHNibLoadable-umbrella.h"
+
+  export *
+  module * { export * }
+}

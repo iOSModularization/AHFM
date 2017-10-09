@@ -1,0 +1,6 @@
+framework module AHFMUserCenter {
+  umbrella header "AHFMUserCenter-umbrella.h"
+
+  export *
+  module * { export * }
+}

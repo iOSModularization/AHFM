@@ -1,0 +1,6 @@
+framework module AHFMHistoryVCManager {
+  umbrella header "AHFMHistoryVCManager-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module AHFMSearchVCService {
+  umbrella header "AHFMSearchVCService-umbrella.h"
+
+  export *
+  module * { export * }
+}

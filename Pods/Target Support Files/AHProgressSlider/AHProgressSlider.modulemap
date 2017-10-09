@@ -1,0 +1,6 @@
+framework module AHProgressSlider {
+  umbrella header "AHProgressSlider-umbrella.h"
+
+  export *
+  module * { export * }
+}

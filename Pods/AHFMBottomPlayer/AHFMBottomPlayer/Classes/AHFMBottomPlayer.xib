@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AHFMBottomPlayer" customModule="AHFMBottomPlayer" customModuleProvider="target">
+            <connections>
+                <outlet property="floatingTitleView" destination="bk4-XB-g4S" id="EIn-If-V5f"/>
+                <outlet property="historyBtn" destination="nar-mp-FGC" id="hJD-7D-1GF"/>
+                <outlet property="listBarBtn" destination="2ZK-Ym-kWK" id="GFT-iw-g0G"/>
+                <outlet property="playBtn" destination="1SS-ta-fjW" id="nTS-wK-aqT"/>
+                <outlet property="progressWidth" destination="k6r-Y0-njF" id="v5q-i8-PF7"/>
+                <outlet property="showTitleLabel" destination="kJf-MX-dM0" id="Qff-ut-phc"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgd-Vz-Dae">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                    <color key="backgroundColor" red="0.72941176470000002" green="0.72941176470000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="ivz-y6-cdj"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ZK-Ym-kWK">
+                    <rect key="frame" x="0.0" y="6.5" width="50" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="2ZK-Ym-kWK" secondAttribute="height" multiplier="61:44" id="rbo-cz-o2e"/>
+                        <constraint firstAttribute="width" constant="50" id="uN7-92-XmB"/>
+                    </constraints>
+                    <state key="normal" image="bars"/>
+                    <connections>
+                        <action selector="listBarBtnTapped:" destination="-1" eventType="touchUpInside" id="2qB-FU-wtR"/>
+                    </connections>
+                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="FSi-u1-UfB">
+                    <rect key="frame" x="50" y="5" width="225" height="42"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bk4-XB-g4S" customClass="AHFloatingTextView" customModule="AHFloatingTextView">
+                            <rect key="frame" x="0.0" y="0.0" width="225" height="21"/>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJf-MX-dM0">
+                            <rect key="frame" x="0.0" y="21" width="225" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1SS-ta-fjW">
+                    <rect key="frame" x="275" y="0.5" width="50" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="1SS-ta-fjW" secondAttribute="height" multiplier="26:25" id="Jb2-Yw-tGV"/>
+                        <constraint firstAttribute="width" constant="50" id="Mhe-YQ-sRB"/>
+                    </constraints>
+                    <state key="normal" image="play-btn-large"/>
+                    <connections>
+                        <action selector="playBtnTapped:" destination="-1" eventType="touchUpInside" id="OhF-L2-f3M"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nar-mp-FGC">
+                    <rect key="frame" x="325" y="-1" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="V2M-nv-pO4"/>
+                        <constraint firstAttribute="width" secondItem="nar-mp-FGC" secondAttribute="height" multiplier="1:1" id="qn7-TI-dSI"/>
+                    </constraints>
+                    <state key="normal" image="history"/>
+                    <connections>
+                        <action selector="historyBtnTapped:" destination="-1" eventType="touchUpInside" id="woF-hg-hIY"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mXb-FA-msK" userLabel="progress view">
+                    <rect key="frame" x="0.0" y="45" width="300" height="4"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="k6r-Y0-njF"/>
+                        <constraint firstAttribute="height" constant="4" id="tyR-af-38f"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Tgd-Vz-Dae" secondAttribute="trailing" id="0qh-Lw-21g"/>
+                <constraint firstItem="2ZK-Ym-kWK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3eh-nm-TFS"/>
+                <constraint firstAttribute="bottom" secondItem="FSi-u1-UfB" secondAttribute="bottom" constant="2" id="94f-4z-fuI"/>
+                <constraint firstItem="FSi-u1-UfB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="5" id="EkA-WZ-vsF"/>
+                <constraint firstItem="Tgd-Vz-Dae" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="HRQ-RN-plg"/>
+                <constraint firstAttribute="bottom" secondItem="mXb-FA-msK" secondAttribute="bottom" id="Jhg-fB-Sri"/>
+                <constraint firstItem="FSi-u1-UfB" firstAttribute="leading" secondItem="2ZK-Ym-kWK" secondAttribute="trailing" id="RhA-qz-Qox"/>
+                <constraint firstItem="nar-mp-FGC" firstAttribute="leading" secondItem="1SS-ta-fjW" secondAttribute="trailing" id="SHu-IA-wVT"/>
+                <constraint firstItem="1SS-ta-fjW" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="amw-PM-oZ1"/>
+                <constraint firstItem="mXb-FA-msK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dwd-C7-mIP"/>
+                <constraint firstItem="Tgd-Vz-Dae" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jtU-8k-X7u"/>
+                <constraint firstItem="2ZK-Ym-kWK" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="pzR-BT-1UW"/>
+                <constraint firstAttribute="trailing" secondItem="nar-mp-FGC" secondAttribute="trailing" id="rvc-ha-UBQ"/>
+                <constraint firstItem="1SS-ta-fjW" firstAttribute="leading" secondItem="FSi-u1-UfB" secondAttribute="trailing" id="yy4-o8-P4w"/>
+                <constraint firstItem="nar-mp-FGC" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="zLR-lT-hCW"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="33.5" y="-255.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bars" width="21" height="18"/>
+        <image name="history" width="28" height="28"/>
+        <image name="play-btn-large" width="26" height="25"/>
+    </resources>
+</document>

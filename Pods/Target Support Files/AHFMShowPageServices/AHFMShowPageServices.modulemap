@@ -1,0 +1,6 @@
+framework module AHFMShowPageServices {
+  umbrella header "AHFMShowPageServices-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Entertainment</key>
+	<string>Entertainment-icon</string>
+	<key>Health</key>
+	<string>Health-icon</string>
+	<key>Culture</key>
+	<string>Culture-icon</string>
+	<key>Car</key>
+	<string>Car-icon</string>
+	<key>Technology</key>
+	<string>Technology-icon</string>
+	<key>Education</key>
+	<string>Education-icon</string>
+	<key>Careers</key>
+	<string>Careers-icon</string>
+	<key>Fashion</key>
+	<string>Fashion-icon</string>
+	<key>Fitness</key>
+	<string>Fitness-icon</string>
+	<key>Comedy</key>
+	<string>Comedy-icon</string>
+	<key>Dating</key>
+	<string>Dating-icon</string>
+	<key>Philosophy</key>
+	<string>Philosophy-icon</string>
+	<key>History</key>
+	<string>History-icon</string>
+	<key>Science</key>
+	<string>Science-icon</string>
+	<key>Investing</key>
+	<string>Investing-icon</string>
+	<key>Pets</key>
+	<string>Pets-icon</string>
+	<key>Food</key>
+	<string>Food-icon</string>
+	<key>Economics</key>
+	<string>Economics-icon</string>
+	<key>Music</key>
+	<string>Music-icon</string>
+	<key>Sports</key>
+	<string>Sports-icon</string>
+	<key>Communication</key>
+	<string>Communication-icon</string>
+	<key>Outdoors</key>
+	<string>Outdoors-icon</string>
+	<key>Politics</key>
+	<string>Politics-icon</string>
+	<key>Business</key>
+	<string>Business-icon</string>
+</dict>
+</plist>

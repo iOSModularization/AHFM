@@ -1,0 +1,6 @@
+framework module AHFMAudioPlayerVCManager {
+  umbrella header "AHFMAudioPlayerVCManager-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module AHFMKeywordVCManager {
+  umbrella header "AHFMKeywordVCManager-umbrella.h"
+
+  export *
+  module * { export * }
+}

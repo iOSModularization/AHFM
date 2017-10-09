@@ -1,0 +1,6 @@
+framework module AHFMDownloadCenterManager {
+  umbrella header "AHFMDownloadCenterManager-umbrella.h"
+
+  export *
+  module * { export * }
+}

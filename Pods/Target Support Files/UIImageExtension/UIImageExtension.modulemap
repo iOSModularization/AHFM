@@ -1,0 +1,6 @@
+framework module UIImageExtension {
+  umbrella header "UIImageExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}

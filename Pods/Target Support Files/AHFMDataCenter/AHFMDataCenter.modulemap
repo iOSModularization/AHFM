@@ -1,0 +1,6 @@
+framework module AHFMDataCenter {
+  umbrella header "AHFMDataCenter-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module AHFMDataTransformers {
+  umbrella header "AHFMDataTransformers-umbrella.h"
+
+  export *
+  module * { export * }
+}

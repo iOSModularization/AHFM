@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="219" id="KGk-i7-Jjw" customClass="AHFMCategoryCell" customModule="AHFMFeature" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="219"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="218.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Anr-hz-ZTp">
+                        <rect key="frame" x="8" y="24" width="351" height="21"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pMk-XV-kvF">
+                                <rect key="frame" x="0.0" y="0.0" width="5" height="21"/>
+                                <color key="backgroundColor" red="1" green="0.25490196079999999" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="5" id="Oyf-pl-6vm"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXq-L5-Mqw">
+                                <rect key="frame" x="21" y="0.0" width="330" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="pMk-XV-kvF" firstAttribute="top" secondItem="jXq-L5-Mqw" secondAttribute="top" id="6OQ-GK-WBX"/>
+                            <constraint firstItem="pMk-XV-kvF" firstAttribute="bottom" secondItem="jXq-L5-Mqw" secondAttribute="bottom" id="wBI-Qh-opT"/>
+                            <constraint firstAttribute="height" constant="21" id="wUU-d6-bmt"/>
+                        </constraints>
+                    </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vnQ-JK-k6j">
+                        <rect key="frame" x="0.0" y="61" width="375" height="150"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="150" id="OpL-nk-0Y1"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Anr-hz-ZTp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="b8k-Rr-0F1"/>
+                    <constraint firstItem="vnQ-JK-k6j" firstAttribute="top" secondItem="Anr-hz-ZTp" secondAttribute="bottom" constant="16" id="cXJ-b8-sWY"/>
+                    <constraint firstItem="vnQ-JK-k6j" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="kKD-3X-5wW"/>
+                    <constraint firstItem="Anr-hz-ZTp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="16" id="qKW-OR-RMs"/>
+                    <constraint firstAttribute="trailing" secondItem="vnQ-JK-k6j" secondAttribute="trailing" id="xTo-8J-PtN"/>
+                    <constraint firstAttribute="trailing" secondItem="Anr-hz-ZTp" secondAttribute="trailing" constant="16" id="yz8-eX-1A5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="categoryName" destination="jXq-L5-Mqw" id="7wr-yS-nB7"/>
+                <outlet property="containerView" destination="vnQ-JK-k6j" id="2qv-xK-6ce"/>
+            </connections>
+            <point key="canvasLocation" x="61.5" y="141.5"/>
+        </tableViewCell>
+    </objects>
+</document>

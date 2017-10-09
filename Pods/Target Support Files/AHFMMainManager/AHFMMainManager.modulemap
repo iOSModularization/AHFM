@@ -1,0 +1,6 @@
+framework module AHFMMainManager {
+  umbrella header "AHFMMainManager-umbrella.h"
+
+  export *
+  module * { export * }
+}

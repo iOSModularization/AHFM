@@ -1,0 +1,6 @@
+framework module AHFMBottomPlayerServices {
+  umbrella header "AHFMBottomPlayerServices-umbrella.h"
+
+  export *
+  module * { export * }
+}

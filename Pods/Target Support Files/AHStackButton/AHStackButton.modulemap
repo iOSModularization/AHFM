@@ -1,0 +1,6 @@
+framework module AHStackButton {
+  umbrella header "AHStackButton-umbrella.h"
+
+  export *
+  module * { export * }
+}

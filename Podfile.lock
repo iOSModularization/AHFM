@@ -1,0 +1,373 @@
+PODS:
+  - AHAudioPlayer (0.1.2)
+  - AHBannerView (0.2.2)
+  - AHCategoryView (1.2.2)
+  - AHDataModel (0.4.1)
+  - AHDownloader (0.1.7):
+    - AHDownloadTool
+  - AHDownloadTool (0.1.10)
+  - AHDraggableLayout (0.1.05)
+  - AHFloatingTextView (0.1.2)
+  - AHFMAudioPlayerManager (0.2.4):
+    - AHAudioPlayer
+    - AHFMDataCenter
+    - AHFMDataTransformers
+    - AHFMModuleManager
+    - SDWebImage
+  - AHFMAudioPlayerVC (0.2.2):
+    - AHAudioPlayer
+    - AHBannerView
+    - AHFloatingTextView
+    - AHProgressSlider
+    - SDWebImage
+    - StringExtension
+    - UIImageExtension
+  - AHFMAudioPlayerVCManager (0.3.8):
+    - AHFMAudioPlayerVCServices
+    - AHFMBottomPlayerServices
+    - AHFMDataCenter
+    - AHFMDataTransformers
+    - AHFMEpisodeListVCServices
+    - AHFMModuleManager
+    - AHFMNetworking
+    - AHFMShowPageServices
+    - AHServiceRouter
+    - SwiftyJSON
+  - AHFMAudioPlayerVCServices (0.1.0):
+    - AHFMServices
+  - AHFMBottomPlayer (0.1.2):
+    - AHAudioPlayer
+    - AHFloatingTextView
+    - UIImageExtension
+  - AHFMBottomPlayerManager (0.1.4):
+    - AHFMAudioPlayerVCServices
+    - AHFMBottomPlayerServices
+    - AHFMDataCenter
+    - AHFMDataTransformers
+    - AHFMEpisodeListVCServices
+    - AHFMHistoryVCServices
+    - AHFMModuleManager
+    - AHFMNetworking
+    - AHServiceRouter
+  - AHFMBottomPlayerServices (0.1.0):
+    - AHFMServices
+  - AHFMCategoryVC (0.1.12):
+    - AHDraggableLayout
+    - BundleExtension
+    - UIImageExtension
+  - AHFMCategoryVCManager (0.1.02):
+    - AHFMBottomPlayerServices
+    - AHFMCategoryVCServices
+    - AHFMKeywordVCServices
+    - AHFMModuleManager
+    - AHServiceRouter
+  - AHFMCategoryVCServices (0.1.01):
+    - AHFMServices
+  - AHFMDataCenter (0.1.6):
+    - AHDataModel
+    - UIDeviceExtension
+  - AHFMDataTransformers (0.1.0):
+    - SwiftyJSON
+  - AHFMDownloadCenter (0.1.0):
+    - AHAudioPlayer
+    - AHCategoryView
+    - AHDownloader
+    - BundleExtension
+    - SDWebImage
+    - StringExtension
+    - UIDeviceExtension
+    - UIImageExtension
+  - AHFMDownloadCenterManager (0.2.2):
+    - AHDownloadTool
+    - AHFMAudioPlayerVCServices
+    - AHFMBottomPlayerServices
+    - AHFMDataCenter
+    - AHFMDataTransformers
+    - AHFMDownloadCenterServices
+    - AHFMDownloadListServices
+    - AHFMModuleManager
+    - AHFMNetworking
+    - AHFMShowPageServices
+    - AHServiceRouter
+  - AHFMDownloadCenterServices (0.1.0):
+    - AHFMServices
+  - AHFMDownloaderManager (0.1.7):
+    - AHDownloader
+    - AHFMDataCenter
+    - AHFMModuleManager
+  - AHFMDownloadList (0.1.3):
+    - AHDownloader
+    - BundleExtension
+    - StringExtension
+    - SVProgressHUD
+    - UIDeviceExtension
+    - UIImageExtension
+  - AHFMDownloadListManager (0.1.6):
+    - AHFMBottomPlayerServices
+    - AHFMDataCenter
+    - AHFMDataTransformers
+    - AHFMDownloadCenterServices
+    - AHFMDownloadListServices
+    - AHFMModuleManager
+    - AHFMNetworking
+    - AHServiceRouter
+    - SwiftyJSON
+  - AHFMDownloadListServices (0.1.0):
+    - AHFMServices
+  - AHFMEpisodeListVC (0.1.0):
+    - AHAudioPlayer
+    - AHNibLoadable
+    - BundleExtension
+    - SDWebImage
+    - StringExtension
+    - UIImageExtension
+  - AHFMEpisodeListVCManager (0.1.1):
+    - AHDownloadTool
+    - AHFMDataCenter
+    - AHFMDataTransformers
+    - AHFMEpisodeListVCServices
+    - AHFMModuleManager
+    - AHFMNetworking
+    - AHServiceRouter
+  - AHFMEpisodeListVCServices (0.1.0):
+    - AHFMServices
+  - AHFMFeature (0.1.0):
+    - AHBannerView
+    - BundleExtension
+    - SDWebImage
+    - SVProgressHUD
+    - UIImageExtension
+  - AHFMFeatureManager (0.1.0):
+    - AHFMBottomPlayerServices
+    - AHFMDataCenter
+    - AHFMDataTransformers
+    - AHFMFeatureServices
+    - AHFMModuleManager
+    - AHFMNetworking
+    - AHFMShowPageServices
+    - AHServiceRouter
+    - SwiftyJSON
+  - AHFMFeatureServices (0.1.2):
+    - AHFMServices
+  - AHFMHistoryVC (0.1.0):
+    - BundleExtension
+    - SDWebImage
+    - UIImageExtension
+  - AHFMHistoryVCManager (0.1.0):
+    - AHFMAudioPlayerVCServices
+    - AHFMBottomPlayerServices
+    - AHFMDataCenter
+    - AHFMHistoryVCServices
+    - AHFMModuleManager
+    - AHServiceRouter
+  - AHFMHistoryVCServices (0.1.0):
+    - AHFMServices
+  - AHFMKeywordVC (0.1.0):
+    - BundleExtension
+    - SDWebImage
+    - SVProgressHUD
+    - UIImageExtension
+  - AHFMKeywordVCManager (0.1.0):
+    - AHFMAudioPlayerVCServices
+    - AHFMBottomPlayerServices
+    - AHFMDataCenter
+    - AHFMDataTransformers
+    - AHFMKeywordVCServices
+    - AHFMModuleManager
+    - AHFMNetworking
+    - AHFMShowPageServices
+    - AHServiceRouter
+  - AHFMKeywordVCServices (0.1.0):
+    - AHFMServices
+  - AHFMMain (0.1.0):
+    - AHCategoryView
+    - UIImageExtension
+  - AHFMMainManager (0.1.01):
+    - AHFMAudioPlayerManager
+    - AHFMAudioPlayerVC
+    - AHFMAudioPlayerVCManager
+    - AHFMBottomPlayer
+    - AHFMBottomPlayerManager
+    - AHFMCategoryVC
+    - AHFMCategoryVCManager
+    - AHFMCategoryVCServices
+    - AHFMDownloadCenter
+    - AHFMDownloadCenterManager
+    - AHFMDownloaderManager
+    - AHFMDownloadList
+    - AHFMDownloadListManager
+    - AHFMEpisodeListVC
+    - AHFMEpisodeListVCManager
+    - AHFMFeature
+    - AHFMFeatureManager
+    - AHFMFeatureServices
+    - AHFMHistoryVC
+    - AHFMHistoryVCManager
+    - AHFMKeywordVC
+    - AHFMKeywordVCManager
+    - AHFMMainServices
+    - AHFMModuleManager
+    - AHFMSearchVC
+    - AHFMSearchVCManager
+    - AHFMSearchVCServices
+    - AHFMServices
+    - AHFMShowPage
+    - AHFMShowPageManger
+    - AHFMUserCenter
+    - AHFMUserCenterManager
+    - AHFMUserCenterServices
+    - AHServiceRouter
+  - AHFMMainServices (0.1.0):
+    - AHFMServices
+  - AHFMModuleManager (0.2.0)
+  - AHFMNetworking (0.1.2):
+    - Alamofire (~> 4.4)
+    - KeychainAccess (~> 3.0.2)
+  - AHFMSearchVC (0.1.0):
+    - BundleExtension
+    - StringExtension
+  - AHFMSearchVCManager (0.1.0):
+    - AHFMBottomPlayerServices
+    - AHFMKeywordVCServices
+    - AHFMModuleManager
+    - AHFMNetworking
+    - AHFMSearchVCService
+    - AHServiceRouter
+    - SwiftyJSON
+  - AHFMSearchVCService (0.1.0):
+    - AHFMServices
+  - AHFMSearchVCServices (0.1.0):
+    - AHFMServices
+  - AHFMServices (0.3.0)
+  - AHFMShowPage (0.1.2):
+    - AHAudioPlayer
+    - AHDownloader
+    - AHNibLoadable
+    - AHStackButton
+    - BundleExtension
+    - SDWebImage
+    - StringExtension
+    - SVProgressHUD
+    - UIImageExtension
+  - AHFMShowPageManger (0.1.0):
+    - AHFMAudioPlayerVCServices
+    - AHFMBottomPlayerServices
+    - AHFMDataCenter
+    - AHFMDataTransformers
+    - AHFMDownloadListServices
+    - AHFMModuleManager
+    - AHFMNetworking
+    - AHFMShowPageServices
+    - AHServiceRouter
+  - AHFMShowPageServices (0.1.2):
+    - AHFMServices
+  - AHFMUserCenter (0.1.0):
+    - BundleExtension
+    - SDWebImage
+    - UIImageExtension
+  - AHFMUserCenterManager (0.1.0):
+    - AHFMBottomPlayerServices
+    - AHFMDataCenter
+    - AHFMDownloadCenterServices
+    - AHFMHistoryVCServices
+    - AHFMModuleManager
+    - AHFMShowPageServices
+    - AHFMUserCenterServices
+    - AHServiceRouter
+  - AHFMUserCenterServices (0.1.0):
+    - AHFMServices
+  - AHNibLoadable (0.1.0)
+  - AHProgressSlider (0.2.0)
+  - AHServiceRouter (0.5.3)
+  - AHStackButton (0.1.1)
+  - Alamofire (4.5.1)
+  - BundleExtension (0.1.0)
+  - KeychainAccess (3.0.2)
+  - SDWebImage (4.1.1):
+    - SDWebImage/Core (= 4.1.1)
+  - SDWebImage/Core (4.1.1)
+  - StringExtension (0.1.1)
+  - SVProgressHUD (2.2.1)
+  - SwiftyJSON (3.1.4)
+  - UIDeviceExtension (0.1.0)
+  - UIImageExtension (0.1.2)
+
+DEPENDENCIES:
+  - AHFMMain
+  - AHFMMainManager
+  - AHFMMainServices
+  - AHServiceRouter
+
+SPEC CHECKSUMS:
+  AHAudioPlayer: b90ae3a71eba7c787abc086f8d6d816226cd8ae0
+  AHBannerView: 815e44350db17a493ed9ff01bc299c993e7146a3
+  AHCategoryView: 12d5261208774d9f016d5d9d7a26106ed143437e
+  AHDataModel: b125e87955b1c57c6d07ae824d5c5f559cea433a
+  AHDownloader: 0797ca6a7fc971f4ba5856f20618ba014da78164
+  AHDownloadTool: d942add9da4ab4f87f82d3d63bb194a5631e9bb0
+  AHDraggableLayout: a98ad8a9f8881df9168c44b420c07f4346e2978c
+  AHFloatingTextView: c910c64b6bfd485ae26516541e67f88295f97fbb
+  AHFMAudioPlayerManager: 60e2c8f348d6e1d001e62e76cc22533cc426c52f
+  AHFMAudioPlayerVC: 4be9998e9fe9cbe6bd8fcbe6444ae9a6b8040330
+  AHFMAudioPlayerVCManager: 96eac2217e6fb912df805e3a50b5f9bfd2a9a3a7
+  AHFMAudioPlayerVCServices: 27bdded45ce340f6bf0265264e64ee2fd26f6d57
+  AHFMBottomPlayer: 6ed5382fc6a38f7d0b4263f22d33b8046c6826a4
+  AHFMBottomPlayerManager: e87103fe619c3a35860de1a2216d34a10a0320ee
+  AHFMBottomPlayerServices: 62e83815ed8969376d047556382931cc46841de5
+  AHFMCategoryVC: 82cc6d79f2be3999535d61fbcbca165e96149dc7
+  AHFMCategoryVCManager: 14ffff68cff2762f420c907be5a149dadaaf675a
+  AHFMCategoryVCServices: 232d6d5f7e7bd1888d3461b971bda0515dc1c3ad
+  AHFMDataCenter: 2190baeb9bff7ebfbc5dd0811eb46e29b7439d24
+  AHFMDataTransformers: eafcb87a307fbd52ccd61917fa5de1aff6a7bd53
+  AHFMDownloadCenter: 6a5568d2af0b2e02c5a5ed60ae0556cfa95717f2
+  AHFMDownloadCenterManager: ad19a24488741c63d189118316dbd344745fbc7d
+  AHFMDownloadCenterServices: 23cf7d1977796512206391c344b8b1e95d1e3b05
+  AHFMDownloaderManager: 38402f7e9fcdca5df340bf45aa32464914b2a185
+  AHFMDownloadList: 3352e614434562a8470f384d5f54613bdb074f4f
+  AHFMDownloadListManager: 06aaf655965222c41bbcacd6134de742882a90b4
+  AHFMDownloadListServices: 5409157c9dfe981f7f88027672d217ba505ed9ba
+  AHFMEpisodeListVC: 254520e7983c36350fa1285894958161e02aa15d
+  AHFMEpisodeListVCManager: 4a4769293529b1bfbc79e704be9b719b7db6acaf
+  AHFMEpisodeListVCServices: c3f1fa78faeeaa22151c213134ad6e603b0a9821
+  AHFMFeature: 2a65d0fb48a8ee384a8b40fc5d11121727017962
+  AHFMFeatureManager: 43531ef907080e718bb6b16073d2d91f1faa05de
+  AHFMFeatureServices: a67b02ef51fbcec852946d4f9d719d0cca4394d1
+  AHFMHistoryVC: ec20e566279f6eda1591d765341da7cc277af45c
+  AHFMHistoryVCManager: a31029918fdb404d368b5969cb8efc76e2104039
+  AHFMHistoryVCServices: 8d3a6de8ab3c5fd13305b2a914134e675d526541
+  AHFMKeywordVC: d3566ad431f408e8e96492a70b306ee0527324ea
+  AHFMKeywordVCManager: 50ec35b422c9f226caad3c739feaa669d3c1c0c1
+  AHFMKeywordVCServices: fce1f66afd3c3337edbcc6ff8bb73758ae5099bb
+  AHFMMain: d9a678e3d5c2d8a2c46b05ddaaea30e7d4f702c8
+  AHFMMainManager: 41f171743af3e53f0f54083be13d9faabb0a1028
+  AHFMMainServices: 7724c81aa9dfecc962ac1cfed7b774b364271c2b
+  AHFMModuleManager: 301c8a5945a301528d5cba55e4809428ef896141
+  AHFMNetworking: e2b524c569fc4ec0f2583ac607f355a22fe1a46f
+  AHFMSearchVC: 45caa31e519ac815b1229c1f84a67bd3cbcc4894
+  AHFMSearchVCManager: c1ab0398638e7865255defc24e43ea523c4452b2
+  AHFMSearchVCService: fa54e85186ffcc801a4d007d394512ea1dd02a45
+  AHFMSearchVCServices: bb389c430916468764e130e4bcc17b09ad9ccd63
+  AHFMServices: 7c2c52fd7bd0b604fdab05cc9adb13129c218b60
+  AHFMShowPage: bc559f6c5a17615295376d6888120d4bd3c6e920
+  AHFMShowPageManger: f4edeffdce2ec6130d8c96db06479164c3b8692b
+  AHFMShowPageServices: f5bc995a70d155194528652563ebaf3b94f96fb3
+  AHFMUserCenter: d1dd74e8faa4aa7d75d596f69a08e98c6a289d66
+  AHFMUserCenterManager: f952e6a4ea974012353f0cab4a66408bbdc9d8e0
+  AHFMUserCenterServices: 0b6848f9a7bd111ed13ccc31850adb23d6b59691
+  AHNibLoadable: b7d3d7222f8f28e51e07dd619ac6e96cb068e8a7
+  AHProgressSlider: 56150ad907c2c20d61dbe609e53493855103d9bf
+  AHServiceRouter: b7b49e712cf8d697ded8c48151cfcd2ee103a562
+  AHStackButton: 9e55ac1f606e8283625528e963a5b21cc630f5da
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  BundleExtension: 476c80ebe7af53c74382fa5c6f3f77da41be696a
+  KeychainAccess: a986406022dfc7c634c691ad3bec670cc6a32002
+  SDWebImage: caf91ee75671c95eb7b3073cd90649d25f852a88
+  StringExtension: 25dc64fc7b95063c99c1122ede33ae217107fc28
+  SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  UIDeviceExtension: 53d1d2177714a3e434e755b6c0fb66678595fce4
+  UIImageExtension: 074e3bef49ae8cc2f1dda1906f1209c15dca67d8
+
+PODFILE CHECKSUM: a3d5d4f27b6c9cfdacd69388bade488313139342
+
+COCOAPODS: 1.3.0.beta.2

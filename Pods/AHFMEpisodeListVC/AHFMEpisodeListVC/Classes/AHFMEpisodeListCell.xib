@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AHFMEpisodeListCellID" rowHeight="100" id="KGk-i7-Jjw" customClass="AHFMEpisodeListCell" customModule="AHFMEpisodeListVC" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="373" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="373" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleAspectFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BRO-xW-YRw">
+                        <rect key="frame" x="16" y="16" width="341" height="41"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="is-pausing" translatesAutoresizingMaskIntoConstraints="NO" id="s9C-yE-Acs">
+                                <rect key="frame" x="0.0" y="14.5" width="20" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="boA-KH-4IQ"/>
+                                    <constraint firstAttribute="width" secondItem="s9C-yE-Acs" secondAttribute="height" multiplier="5:3" id="jai-vE-dvR"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEc-wc-Swt">
+                                <rect key="frame" x="20" y="0.0" width="321" height="41"/>
+                                <string key="text">LabelLabelLabel
+fsdafasdfasd</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="is-purchased" translatesAutoresizingMaskIntoConstraints="NO" id="3Cm-ff-L5Y">
+                        <rect key="frame" x="297" y="77" width="60" height="17.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="3Cm-ff-L5Y" secondAttribute="height" multiplier="41:12" id="NNm-nP-EwB"/>
+                            <constraint firstAttribute="width" constant="60" id="Sph-fa-Hf2"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EA8-gn-xgf" userLabel="bottom">
+                        <rect key="frame" x="16" y="65" width="273" height="18"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageView:vD3-dn-QmJ:image" translatesAutoresizingMaskIntoConstraints="NO" id="vD3-dn-QmJ">
+                                <rect key="frame" x="0.0" y="0.0" width="20" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="3WU-Lg-Gj3"/>
+                                    <constraint firstAttribute="width" secondItem="vD3-dn-QmJ" secondAttribute="height" multiplier="10:9" id="Tco-gi-MF9"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7R-Yk-dBE">
+                                <rect key="frame" x="28" y="0.5" width="245" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="EA8-gn-xgf" firstAttribute="top" secondItem="BRO-xW-YRw" secondAttribute="bottom" constant="8" id="3Nw-Ss-0e3"/>
+                    <constraint firstItem="EA8-gn-xgf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="6DL-WM-W2t"/>
+                    <constraint firstAttribute="bottom" secondItem="3Cm-ff-L5Y" secondAttribute="bottom" constant="5" id="Brj-l8-gBU"/>
+                    <constraint firstItem="3Cm-ff-L5Y" firstAttribute="leading" secondItem="EA8-gn-xgf" secondAttribute="trailing" constant="8" id="EEX-bw-BKp"/>
+                    <constraint firstAttribute="bottom" secondItem="EA8-gn-xgf" secondAttribute="bottom" constant="16" id="WpI-LX-rNk"/>
+                    <constraint firstAttribute="trailing" secondItem="BRO-xW-YRw" secondAttribute="trailing" constant="16" id="amp-j6-lgP"/>
+                    <constraint firstItem="BRO-xW-YRw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="jDR-pd-U8I"/>
+                    <constraint firstAttribute="trailing" secondItem="3Cm-ff-L5Y" secondAttribute="trailing" constant="16" id="pCN-nt-Ux9"/>
+                    <constraint firstItem="BRO-xW-YRw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="qOL-6p-kpu"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="durationLabel" destination="k7R-Yk-dBE" id="dYK-g4-O3B"/>
+                <outlet property="episodeTitle" destination="AEc-wc-Swt" id="PXJ-FO-g1Z"/>
+                <outlet property="isDownloadImgWidth" destination="3WU-Lg-Gj3" id="u9C-KI-DkM"/>
+                <outlet property="isDownloadedImg" destination="vD3-dn-QmJ" id="Ci0-lh-tmq"/>
+                <outlet property="isPurchasedImg" destination="3Cm-ff-L5Y" id="uJR-lY-62y"/>
+                <outlet property="playStateImg" destination="s9C-yE-Acs" id="7Ba-1e-hKr"/>
+                <outlet property="playStateImgWidth" destination="boA-KH-4IQ" id="lJl-Of-7KS"/>
+            </connections>
+            <point key="canvasLocation" x="60.5" y="136"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="imageView:vD3-dn-QmJ:image" width="30" height="30">
+            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
+GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
+c1dOU0NvbG9ygAKADRIgwAAAgAOAC1h7MzAsIDMwfdIVChYYWk5TLm9iamVjdHOhF4AEgArSFQoaHaIb
+HIAFgAaACRAA0iAKISJfEBROU1RJRkZSZXByZXNlbnRhdGlvboAHgAhPERauTU0AKgAADhgAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMKFAMiFSYEOhowBkYaMQZHFigF
+PQ0YAyYAAAAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGQMnMVwLeVGYE8JhuBbla8gY+XDSGv9x0xr/a8oY
+/GO6FulVoBTJNmcNhREiBDEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAACRACHDZmDIZkvRfqdNgc/3LVG/9w0hv/b88a/27OGv9uzhr/b88a
+/3DSGv9x1hv/dNgb/2jDGPE+dQ6XDRkDJwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAYLgVEW6wV13TYHP9w0hv/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a
+/27OGv9uzhr/bs4a/2/RGv902Rv/Y7gX5iJCCFkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAACRECGBnwhjwctUb/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a
+/27OGv9uzhr/bs4a/27OGv9uzhr/cdMb/2zMGfowWwt6AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAHDQGUGvGGvVx1Bz/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a
+/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a/2/RGv9w0xv/KU4KbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAPGwMvYrcX5HLUG/9uzhr/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a
+/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a/2vNF/9u0Rj/acYY9BowBkcAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAVFghCtd9oe/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a
+/27OGv9uzhr/bs4a/27OGv9uzhr/bM0X/4bXOf9/1TD/ctca/1SgFMwDBgAPAAAAAAAAAAAAAAAAAAAA
+ABkuBktuzBv5cNEb/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a
+/27OGv9uzhr/bs4a/27OGv9qzBX/i9pA//T86//L8Kb/bM4X/3HUG/8oSwlqAAAAAAAAAAAAAAAAAAAA
+BUeFEbF12R3/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a
+/27OGv9uzhr/bs4a/2vNF/970yv/5/jV//v++f+Y3lT/a80X/3LVG/9WohTPAwUADgAAAAAAAAAACxQC
+K2S5GOty0x3/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a
+/27OGv9uzhr/bc0Z/3HPHv/S8rP//////6zldP9qzRX/bs4a/2/PGv9szhn8FioFRAAAAAAAAAAAHjYH
+WXLTHP9uzxr/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a
+/27OGv9tzhn/a80X/7vrjf//////xe6c/23OGf9tzhn/bs4a/27OGv902Bv/LlUKeQAAAAAAAAAAL1gL
+gnraI/9uzhr/bs4a/27OGv9uzhr/bc4Z/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a/27OGv9uzhr/bs4a
+/27OGv9qzRX/peNm///////b9MD/dNAi/2zNGP9uzhr/bs4a/27OGv9y1xv/RYIQrAAAAAEAAAADO24O
+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
+dUhVAAAAKAAAApp6aFRXAAAAFgAAAsJuYk5PAAAAJgAAAthjc0NaAAAAIgAAAv5oZUlMAAAAHgAAAyBp
+dElUAAAAKAAAAz5yb1JPAAAAJAAAA2ZkZURFAAAALAAAA4prb0tSAAAAFgAAA7ZzdlNFAAAAJgAAAth6
+aENOAAAAFgAAA8xqYUpQAAAAGgAAA+JlbEdSAAAAIgAAA/xwdFBPAAAAJgAABB5ubE5MAAAAKAAABERl
+c0VTAAAAJgAABB50aFRIAAAAJAAABGx0clRSAAAAIgAABJBmaUZJAAAAKAAABLJockhSAAAAKAAABNpw
+bFBMAAAALAAABQJydVJVAAAAIgAABS5hckVHAAAAJgAABVBlblVTAAAAJgAABXYAVgFhAGUAbwBiAGUA
+YwBuAP0AIABSAEcAQgAgAHAAcgBvAGYAaQBsAEcAZQBuAGUAcgBlAGwAIABSAEcAQgAtAGIAZQBzAGsA
+cgBpAHYAZQBsAHMAZQBQAGUAcgBmAGkAbAAgAFIARwBCACAAZwBlAG4A6AByAGkAYwBDHqUAdQAgAGgA
+7ABuAGgAIABSAEcAQgAgAEMAaAB1AG4AZwBQAGUAcgBmAGkAbAAgAFIARwBCACAARwBlAG4A6QByAGkA
+YwBvBBcEMAQzBDAEOwRMBD0EOAQ5ACAEPwRABD4ERAQwBDkEOwAgAFIARwBCAFAAcgBvAGYAaQBsACAA
+ZwDpAG4A6QByAGkAcQB1AGUAIABSAFYAQgDBAGwAdABhAGwA4QBuAG8AcwAgAFIARwBCACAAcAByAG8A
+ZgBpAGyQGnUoACAAUgBHAEIAIIJyX2ljz4/wAEcAZQBuAGUAcgBpAHMAawAgAFIARwBCAC0AcAByAG8A
+ZgBpAGwATwBiAGUAYwBuAP0AIABSAEcAQgAgAHAAcgBvAGYAaQBsBeQF6AXVBeQF2QXcACAAUgBHAEIA
+IAXbBdwF3AXZAFAAcgBvAGYAaQBsAG8AIABSAEcAQgAgAGcAZQBuAGUAcgBpAGMAbwBQAHIAbwBmAGkA
+bAAgAFIARwBCACAAZwBlAG4AZQByAGkAYwBBAGwAbABnAGUAbQBlAGkAbgBlAHMAIABSAEcAQgAtAFAA
+cgBvAGYAaQBsx3y8GAAgAFIARwBCACDVBLhc0wzHfGZukBoAIABSAEcAQgAgY8+P8GWHTvZOAIIsACAA
+UgBHAEIAIDDXMO0w1TChMKQw6wOTA7UDvQO5A7oDzAAgA8ADwQO/A8YDrwO7ACAAUgBHAEIAUABlAHIA
+ZgBpAGwAIABSAEcAQgAgAGcAZQBuAOkAcgBpAGMAbwBBAGwAZwBlAG0AZQBlAG4AIABSAEcAQgAtAHAA
+cgBvAGYAaQBlAGwOQg4bDiMORA4fDiUOTAAgAFIARwBCACAOFw4xDkgOJw5EDhsARwBlAG4AZQBsACAA
+UgBHAEIAIABQAHIAbwBmAGkAbABpAFkAbABlAGkAbgBlAG4AIABSAEcAQgAtAHAAcgBvAGYAaQBpAGwA
+aQBHAGUAbgBlAHIAaQENAGsAaQAgAFIARwBCACAAcAByAG8AZgBpAGwAVQBuAGkAdwBlAHIAcwBhAGwA
+bgB5ACAAcAByAG8AZgBpAGwAIABSAEcAQgQeBDEESQQ4BDkAIAQ/BEAEPgREBDgEOwRMACAAUgBHAEIG
+RQZEBkEAIAYqBjkGMQZKBkEAIABSAEcAQgAgBicGRAY5BicGRQBHAGUAbgBlAHIAaQBjACAAUgBHAEIA
+IABQAHIAbwBmAGkAbABldGV4dAAAAABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRz
+IHJlc2VydmVkLgBYWVogAAAAAAAA81IAAQAAAAEWz1hZWiAAAAAAAAB0TQAAPe4AAAPQWFlaIAAAAAAA
+AFp1AACscwAAFzRYWVogAAAAAAAAKBoAABWfAAC4NmN1cnYAAAAAAAAAAQHNAABzZjMyAAAAAAABDEIA
+AAXe///zJgAAB5IAAP2R///7ov///aMAAAPcAADAbNIlJicoWiRjbGFzc25hbWVYJGNsYXNzZXNfEBBO
+U0JpdG1hcEltYWdlUmVwoycpKlpOU0ltYWdlUmVwWE5TT2JqZWN00iUmLC1XTlNBcnJheaIsKtIlJi8w
+Xk5TTXV0YWJsZUFycmF5oy8sKtMyMwo0NTZXTlNXaGl0ZVxOU0NvbG9yU3BhY2VEMCAwABADgAzSJSY4
+OVdOU0NvbG9yojgq0iUmOzxXTlNJbWFnZaI7Kl8QD05TS2V5ZWRBcmNoaXZlctE/QFRyb290gAEACAAR
+ABoAIwAtADIANwBGAEwAVwBeAGUAcgB5AIEAgwCFAIoAjACOAJcAnACnAKkAqwCtALIAtQC3ALkAuwC9
+AMIA2QDbAN0XjxeUF58XqBe7F78XyhfTF9gX4BfjF+gX9xf7GAIYChgXGBwYHhggGCUYLRgwGDUYPRhA
+GFIYVRhaAAAAAAAAAgEAAAAAAAAAQQAAAAAAAAAAAAAAAAAAGFw
+</mutableData>
+        </image>
+        <image name="is-pausing" width="11" height="12"/>
+        <image name="is-purchased" width="82" height="24"/>
+    </resources>
+</document>

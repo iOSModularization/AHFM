@@ -1,0 +1,6 @@
+framework module AHFloatingTextView {
+  umbrella header "AHFloatingTextView-umbrella.h"
+
+  export *
+  module * { export * }
+}

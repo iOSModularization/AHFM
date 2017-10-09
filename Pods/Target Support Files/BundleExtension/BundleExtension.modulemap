@@ -1,0 +1,6 @@
+framework module BundleExtension {
+  umbrella header "BundleExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}

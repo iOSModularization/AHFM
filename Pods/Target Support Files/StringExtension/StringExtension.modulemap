@@ -1,0 +1,6 @@
+framework module StringExtension {
+  umbrella header "StringExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}

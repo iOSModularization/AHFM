@@ -1,0 +1,6 @@
+framework module AHFMCategoryVC {
+  umbrella header "AHFMCategoryVC-umbrella.h"
+
+  export *
+  module * { export * }
+}

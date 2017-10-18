@@ -188,7 +188,7 @@ It always remembers episode's last played time history and ready to restore the 
 In the gif demo, pay attention that the audio player only being push at the first time and other times it's being **popped** -- entering from the left side to the right -- it's being recycled(or reused).  
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/audioPlayer.gif)  
 
-NOTE: The retarded dragging in the demo is not fixed. 
+NOTE: The retarded dragging in the demo is now fixed. 
 Related frameworks:
 a. middle bannerView: [AHBannerView](https://github.com/ivsall2012/AHBannerView)  
 b. progress slider with loaded progress: [AHProgressSlider](https://github.com/ivsall2012/AHProgressSlider)  
@@ -240,7 +240,7 @@ a. downloaded/downloading pages hosted by [AHCategoryView](https://github.com/iv
 The search page is for searching episodes. And it comes with trending terms from Twitter reportedly.  
 Though it can't do auto-complete search since the server just simplely doesn't support it.  
 BTW, the JSON data is from www.audiosear.ch. Thank you for your free services!!  
-![](https://github.com/iOSModularization/AHFM/searchPage.gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/searchPage.gif)  
 
 
 ### Category Page

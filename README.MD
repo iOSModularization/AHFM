@@ -1,24 +1,28 @@
 # AHFM
-AHFM is a mid-level complex podcast iOS app that consists of [50+ modules](https://github.com/iOSModularization), including 8 utility modules and 10 marjor INDEPENDENT business modules -- all orchestrated by [AHServiceRouter](https://github.com/ivsall2012/AHServiceRouter).  
-AHFM has one particularly shining feature that other open source projects, perhaps a lot of production apps, don't have -- built with a highly distributed archeteture -- better than [Uber's](https://eng.uber.com/new-rider-app/)!  
-For more info about the archeteture: [Featuring Distributed Archeteture](#distributed-archeteture) and my paper [iOS: A Highly Distributed Archeteture for Large-scale Collaborations]()
+### Brief Demo
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/overview.gif)
 
+
+### Dependencies
 AHFM only uses three third-party frameworks: 
 1. Alamofire(for JSON reuqests and OAuth ONLY).  
 2. SwiftJSON  
-3. SDWebImage    
-NOTE: The download parts use [AHDownloader](https://github.com/ivsall2012/AHDownloader) which doesn't depend on Alamofire.  
+3. SDWebImage     
+NOTE: The download parts are from [AHDownloader](https://github.com/ivsall2012/AHDownloader) which doesn't depend on Alamofire.  
 
 Other than those three frameworks, other parts of the project, including utility tools, are all home-made!!
 
-\**AHFM copys most of its features from [蜻蜓FM](https://itunes.apple.com/us/app/id506685538?mt=8).*   
+\**AHFM copys most of its features from [蜻蜓FM](https://itunes.apple.com/us/app/id506685538?mt=8).*     
+
+Tips:  
+Due the large informations, you can first read some features from the [Feature List](#feature-list).    
+And further, you can checkout [gif demos by modules](#feature-demos-by-modules).   
+Then if you are interested, you can dig deeper into other parts of this article.  
 
 ## Content
 - [Overview](#overview)
-  - [Brief Demo](#brief-demo)
   - [Feature List](#feature-list)
   - [Test The Project](#test-the-project)
-    - [Error Handling](#error-handling)
   - [Featuring Distributed Archeteture](#featuring-distributed-archeteture)
 - [What Is Not Implemented](#what-is-not-implemented)
   - [Offline Detection](#offline-detection)
@@ -37,11 +41,13 @@ Other than those three frameworks, other parts of the project, including utility
 
 
 ## Overview
-Throughout this article, a podcast show is called a show and an audio podcast track is called an episode.  
-A show contains mutiple episodes.
+AHFM is a mid-level complex podcast iOS app that consists of [50+ modules](https://github.com/iOSModularization), including 8 utility modules and 10 marjor INDEPENDENT business modules -- all orchestrated by [AHServiceRouter](https://github.com/ivsall2012/AHServiceRouter).  
+AHFM has one particularly shining feature that other open source projects, perhaps a lot of production apps, **don't have** -- built with a **highly distributed archeteture** -- better than [Uber's](https://eng.uber.com/new-rider-app/)!  
+For more info about the archeteture: [Featuring Distributed Archeteture](#distributed-archeteture) and my paper [iOS: A Highly Distributed Archeteture for Large-scale Collaborations]()
 
+NOTE: Throughout this article, a podcast show is called a show and an audio podcast track is called an episode.  
+A show can contain mutiple episodes.
 
-### Brief Demo
 
 ### Feature List
 AHFM caches extensively with local database using [AHDataModel](https://github.com/ivsall2012/AHDataModel).  
@@ -59,7 +65,7 @@ The audio player, [AHAudioPlayer](https://github.com/ivsall2012/AHAudioPlayer), 
 Since the JSON data doesn't contain file sizes originally, AHFM uses [AHDownloadTool](https://github.com/ivsall2012/AHDownloadTool)'s AHFileSizeProbe for file size detecting and save them into database.
 
 - **Manage Local Albums and episodes**
-After a episode being downloaded, you can play it locally and delete the episode, or the whole album if you want. 
+After an episode being downloaded, you can play it locally and delete the episode, or the whole album if you want. 
 
 - **Play History**  
 All played episodes will be stored in local database and shown in the history page with their played-progress.
@@ -69,13 +75,33 @@ This suscribing system works locally with the database. AHFM is still a demo pro
 I'll describe how to make a socket [long connection](#login-and-backend-long-connection) later.
 
 ### Test The Project
+#### Requirements
+iOS 9.0+(less than 11.0)  
+Xcode 8.0+  
+NOTE: It's not fully tested on iOS11, though it's functioning well without a crash.  
+But most of the problem is from the "safe area" and tablView is not adjusted properly.   
+iOS 10.2 is ok.  
 
-#### Build From Xcode
+#### Steps
+1. [Install Cocoapods](https://guides.cocoapods.org/using/getting-started.html)
+2. Open your ternimal and add the private specs [AHFMSpecs](https://github.com/iOSModularization/AHFMSpecs)  
+```ruby
+pod repo add AHFMSpecs https://github.com/iOSModularization/AHFMSpecs.git
+```
 
-#### Download The Binary
+3. Clone [AHFM](https://github.com/iOSModularization/AHFM)  
+```ruby
+git clone https://github.com/iOSModularization/AHFM.git
+```
 
-#### Error Handling
-libc++abi.dylib`__cxa_throw:
+4. Go to the directory of AHFM you just cloned and update pods through ternimal  
+```ruby
+pod update
+```
+
+5. Open AHFM.xcworkspace  
+6. Choose the proper simulator or your real device(recommended) and do a build-and-run  
+
 
 ### Featuring Distributed Archeteture
 What doesn that even mean, a "distributed archeteture"?  
@@ -89,7 +115,7 @@ And each of them has two companion modules -- services module and a manager modu
 
 2. **The service module**, e.g. AHFMBottomPlayerServices, is an independent module and contains keys of services that the main module providing to the public so that the ousiders can use [AHServiceRouter](https://github.com/ivsall2012/AHServiceRouter) to route to it or use its services. (AHServiceRouter routes by strings of keys). It's purely for routing pages.
 
-3. ** The manager**, e.g. AHFMBottomPlayerManager, is a pure business logics manager which process and handles data and events from the main module. It also imports other service modules and decides which page to route according to those events.
+3. **The manager**, e.g. AHFMBottomPlayerManager, is a pure business logics manager which process and handles data and events from the main module. It also imports other service modules and decides which page to route according to those events.
 
 
 
@@ -115,10 +141,10 @@ Tapping on:
 
 The player also restores last played episode and its played progress too, if any.  
 
-![bottomPlayer](https://github.com/iOSModularization/AHFM/bottomPlayer.gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/bottomPlayer.gif)  
 
 Related frameworks:
-a. floating header at top: [AHFloatingTextView](https://github.com/ivsall2012/AHFloatingTextView)  
+[AHFloatingTextView](https://github.com/ivsall2012/AHFloatingTextView)  
 
 
 ### Show Page
@@ -126,23 +152,26 @@ a. floating header at top: [AHFloatingTextView](https://github.com/ivsall2012/AH
 2. [AHFMShowPageServices](https://github.com/iOSModularization/AHFMShowPageServices)  
 3. [AHFMShowPageManager](https://github.com/iOSModularization/AHFMShowPageManger)  
 
-
+#### Overview
 The show page displays a show's introduction and its episodes.    
 If there's a playing episode that belongs the current show,  
 it will scroll to that specific episode and give it a red indicator on the left.  
-![overview](https://github.com/iOSModularization/AHFM/showPage_overview.gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/showPage_overview.gif)  
 
+#### Header
 it also has a nice sticky header and it's particularly sticky when the show contains current playing episode.
-![header](https://github.com/iOSModularization/AHFM/showPage_header.gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/showPage_header.gif)  
 
+#### Download
 It also correctly handles episode's download states at any given time!  
-NOTE: All download related states(paused, downloading, downlaoded) are handled correctly throughout the app at any given time!  
-![download](https://github.com/iOSModularization/AHFM/showPage_download.gif)  
+NOTE: All download related states(paused, downloading, downlaoded) are handled correctly throughout the app at any given time!    
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/showPage_download.gif)  
 
+#### Recycling View Controllers  
 The show page is one of the two pages in the app(the otehr is Audio Player page), implemented viewController recycling.  
 The following gif shows that we started from "FT Alphachat", tapped into some other show then found "FT Alphachat" again at the "recommended" section.  
 When we tapped it, the navigationController didn't push, but popped to previous show page for "FT Alphachat" entering from the left side.  
-![recycling](https://github.com/iOSModularization/AHFM/showPage_recycling.gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/showPage_recycling.gif)  
 
 
 
@@ -155,9 +184,11 @@ The audio player has all the functionalities a standard audio player has: next/p
 It also has a [Episode List](#episode-list) at left corner list bar and a [Show Page](#show-page) by tapping the middle show cover.  
 It always remembers episode's last played time history and ready to restore the progress.  
 
-In the gif demo, pay attention that the audio player only being push at the first time and other times it's being **popped**, entering from the left side -- it's being recycled(or reused).  
-![audio player demo](https://github.com/iOSModularization/AHFM/audioPlayer.gif)  
+#### Overview and Recycling
+In the gif demo, pay attention that the audio player only being push at the first time and other times it's being **popped** -- entering from the left side to the right -- it's being recycled(or reused).  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/audioPlayer.gif)  
 
+NOTE: The retarded dragging in the demo is not fixed. 
 Related frameworks:
 a. middle bannerView: [AHBannerView](https://github.com/ivsall2012/AHBannerView)  
 b. progress slider with loaded progress: [AHProgressSlider](https://github.com/ivsall2012/AHProgressSlider)  
@@ -168,10 +199,10 @@ c. floating header at top: [AHFloatingTextView](https://github.com/ivsall2012/AH
 2. [AHFMDownloadListServices](https://github.com/iOSModularization/AHFMDownloadListServices)  
 3. [AHFMDownloadListManager](https://github.com/iOSModularization/AHFMDownloadListManager)  
 
-You can get to Download List from only one place -- the show page.  
+You can get to the Download List from only one place -- a [Show Page](#show-page).    
 It first probes episode's file sizes then store them into database.  
 And it's a download list, of course it can initiate download tasks.  
-![DownadList Demo](https://github.com/iOSModularization/AHFM/downloadList.gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/downloadList.gif)  
 
 ### Download Center
 1. [AHFMDownloadCenter](https://github.com/iOSModularization/AHFMDownloadCener)  
@@ -179,19 +210,24 @@ And it's a download list, of course it can initiate download tasks.
 3. [AHFMDownloadCenterManager](https://github.com/iOSModularization/AHFMDownloadCenterManager)  
 
 The download Center consists of two parts: 1) left side downloaded page 2) right side downloading page  
+
+#### Downloaded Page
 The downloaded page displays shows that has more than one downloaded episodes.  
 
-The downloading page displays all currently downloading/pasuing tasks, including those didn't finish last time.
+#### Downloading page
+The downloading page displays all currently downloading/pasuing tasks, including those didn't finish last time.  
+
 Those two pages are hosted by [AHCategoryView](https://github.com/ivsall2012/AHCategoryView).   
 
+#### Caching Downloading Tasks  
 The following gif shows that at some point, there were two tasks that got paused then the app was killed, then re-launch. And that two tasks were successfully cached then restored and finished the downloadings with complete files.  
 In fact, the tasks would get cached even without pausing first.  
-![DownloadCenter Overview](https://github.com/iOSModularization/AHFM/downloadCenter_overview.gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/downloadCenter_overview.gif)  
 
-
+#### Delete Shows and Episodes  
 Additinally for the downloaded page, You can delete the whole show's downloaded episodes or you tap into it and delete episodes from that page.  
 
-![DownloadCenter Deletion](https://github.com/iOSModularization/AHFM/downloadCenter_deletion.gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/downloadCenter_deletion.gif)  
 
 Related framework:  
 a. downloaded/downloading pages hosted by [AHCategoryView](https://github.com/ivsall2012/AHCategoryView).  
@@ -204,7 +240,7 @@ a. downloaded/downloading pages hosted by [AHCategoryView](https://github.com/iv
 The search page is for searching episodes. And it comes with trending terms from Twitter reportedly.  
 Though it can't do auto-complete search since the server just simplely doesn't support it.  
 BTW, the JSON data is from www.audiosear.ch. Thank you for your free services!!  
-![Search Page](https://github.com/iOSModularization/AHFM/searchPage.gif)  
+![](https://github.com/iOSModularization/AHFM/searchPage.gif)  
 
 
 ### Category Page
@@ -216,7 +252,7 @@ The category page is a draggable UICollectionView and it's topic-based.
 The order of the topics is cached into disk so that it wouldn't be lost.  
 
 
-![Category Page](https://github.com/iOSModularization/AHFM/category.gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/category.gif)  
 
 ### Play History
 1. [AHFMHistoryVC](https://github.com/iOSModularization/AHFMHistoryVC)  
@@ -226,7 +262,7 @@ The order of the topics is cached into disk so that it wouldn't be lost.
 The history records every episode played and their played progresses.  
 It only displays the most recent 15 of those episodes though.  
 It can be accessed through [Bottom Player](#buttom-player) and [User Center](#user-center)  
-![History Page](https://github.com/iOSModularization/AHFM/history.gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/history.gif)  
 
 
 ### User Center
@@ -237,7 +273,7 @@ It can be accessed through [Bottom Player](#buttom-player) and [User Center](#us
 User center is a really simple page which consists of subscriptions, downloads and history.  
 
 The following gif show that a show will be subscribed then deleted.  
-![User Center](https://github.com/iOSModularization/AHFM/userCenter.gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/userCenter.gif)  
 
 ### Episode List
 1. [AHFMEpisodeListVC](https://github.com/iOSModularization/AHFMEpisodeListVC)  
@@ -246,7 +282,7 @@ The following gif show that a show will be subscribed then deleted.
 
 Episode list is also a really simple page and serves as an episodes picker for the Audio Player and Bottom Player.
 
-![Episode List](https://github.com/iOSModularization/AHFM/episodeList.gif) 
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/episodeList.gif) 
 
 
 ## Author

@@ -100,8 +100,11 @@ pod update
 ```
 
 5. Open AHFM.xcworkspace  
-6. Choose the proper simulator or your real device(recommended) and do a build-and-run  
-
+6. Choose the proper simulator or your real device(recommended) and do a build-and-run.  
+7. After finish testing, remove AHFMSpecs if you want.  
+```ruby
+pod repo remove AHFMSpecs
+```
 
 ### Featuring Distributed Archeteture
 What doesn that even mean, a "distributed archeteture"?  

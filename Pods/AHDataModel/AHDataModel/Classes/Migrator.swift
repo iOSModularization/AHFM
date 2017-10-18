@@ -10,15 +10,15 @@ import Foundation
 /// Migrator will only be passed in migrationBlock for newly added properties, just in case you want to provide more information for that particular new property.
 public class Migrator {
     public let oldTableName: String
-    public let newTableName: String
+    public let tempTableName: String
     public let property: String
     public let primaryKey: String
     
     var sql: String?
     
-    init(oldTableName: String, newTableName: String, primaryKey: String,property: String) {
+    init(oldTableName: String, tempTableName: String, primaryKey: String,property: String) {
         self.oldTableName = oldTableName
-        self.newTableName = newTableName
+        self.tempTableName = tempTableName
         self.primaryKey = primaryKey
         self.property = property
     }
@@ -38,13 +38,13 @@ extension Migrator {
     }
     
     public func renameProperty(from oldProperty: String) {
-        self.sql = "UPDATE \(newTableName) SET \(property) = (SELECT \(oldProperty) FROM \(oldTableName) WHERE \(newTableName).\(primaryKey) = \(oldTableName).\(primaryKey))"
+        self.sql = "UPDATE \(tempTableName) SET \(property) = (SELECT \(oldProperty) FROM \(oldTableName) WHERE \tempTableName.\(primaryKey) = \(oldTableName).\(primaryKey))"
     }
     
     /// Combine two string properties into one.
     /// NOTE: make sure two properties are actually in the old table and they are indeed 'TEXT' type.
     public func combineProperties(propertyA: String, separator: String, propertyB: String) {
-        self.sql = "UPDATE \(newTableName) SET \(property) = (SELECT \(propertyA) || \"\(separator)\" || \(propertyB) FROM \(oldTableName) WHERE \(newTableName).\(primaryKey) = \(oldTableName).\(primaryKey))"
+        self.sql = "UPDATE \(tempTableName) SET \(property) = (SELECT \(propertyA) || \"\(separator)\" || \(propertyB) FROM \(oldTableName) WHERE \(tempTableName).\(primaryKey) = \(oldTableName).\(primaryKey))"
     }
     
 }

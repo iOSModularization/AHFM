@@ -55,7 +55,7 @@ extension AHFMShow: AHDataModel{
         return [id,numberOfEpDownloaded,totalFilesSize,hasNewDownload,categoryStr,title,detail,thumbCover,fullCover,buzzScore]
     }
     
-    public init(with dict: [String: Any?]){
+    public init(with dict: [String: Any]){
         self.id = dict["id"] as! Int
         self.numberOfEpDownloaded = dict["numberOfEpDownloaded"] as? Int ?? 0
         self.totalFilesSize = dict["totalFilesSize"] as? Int ?? 0

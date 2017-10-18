@@ -21,38 +21,7 @@ fileprivate struct AHPlayerKeyPath {
     static let bufferEmpty = #keyPath(AVPlayerItem.isPlaybackBufferEmpty)
 }
 
-
-
-public let AHAudioPlayerDidStartToPlay = Notification.Name("AHAudioPlayerDidStartToPlay")
-
-/// Sent by audioPlayer, when audioPlayer's state changes
-public let AHAudioPlayerDidChangeState = Notification.Name("AHAudioPlayerDidChangeState")
-
-
-public let AHAudioPlayerDidSwitchPlay = Notification.Name("AHAudioPlayerDidSwitchPlay")
-
-/// Sent by audioPlayer, not the manager!, when an audio reach its end
-public let AHAudioPlayerDidReachEnd = Notification.Name("AHAudioPlayerDidReachEnd")
-
-public let AHAudioPlayerFailedToReachEnd = Notification.Name("AHAudioPlayerFailedToReachEnd")
-
-public enum AHAudioPlayerState {
-    case none
-    case loading
-    case playing
-    case stopped
-    case paused
-}
-
-public enum AHAudioRateSpeed: Float {
-    case one = 1.0
-    case one_two_five = 1.25
-    case one_five = 1.5
-    case one_seven_five = 1.75
-    case two = 2.0
-}
-
-public protocol AHAudioPlayerDelegate: class {
+internal protocol AHAudioPlayerDelegate: class {
     func audioPlayerDidStartToPlay(_ player: AHAudioPlayer)
     func audioPlayerDidReachEnd(_ player: AHAudioPlayer)
     
@@ -72,40 +41,40 @@ public protocol AHAudioPlayerDelegate: class {
     func audioPlayerGetAlbumCover(_ player: AHAudioPlayer, _ callback: @escaping (_ coverImage: UIImage?)->Void)
 }
 extension AHAudioPlayerDelegate {
-    public func audioPlayerWillStartToPlay(_ player: AHAudioPlayer){}
-    public func audioPlayerDidStartToPlay(_ player: AHAudioPlayer){}
-    public func audioPlayerDidReachEnd(_ player: AHAudioPlayer){}
-    public func audioPlayerDidSwitchPlay(_ player: AHAudioPlayer){}
-    public func audioPlayerDidChangeState(_ player: AHAudioPlayer){}
-    public func audioPlayerFailedToReachEnd(_ player: AHAudioPlayer){}
+    func audioPlayerWillStartToPlay(_ player: AHAudioPlayer){}
+    func audioPlayerDidStartToPlay(_ player: AHAudioPlayer){}
+    func audioPlayerDidReachEnd(_ player: AHAudioPlayer){}
+    func audioPlayerDidSwitchPlay(_ player: AHAudioPlayer){}
+    func audioPlayerDidChangeState(_ player: AHAudioPlayer){}
+    func audioPlayerFailedToReachEnd(_ player: AHAudioPlayer){}
 
-    public func audioPlayerShouldPlayNext(_ player: AHAudioPlayer) -> Bool{
+    func audioPlayerShouldPlayNext(_ player: AHAudioPlayer) -> Bool{
         return false
     }
-    public func audioPlayerShouldPlayPrevious(_ player: AHAudioPlayer) -> Bool{
+    func audioPlayerShouldPlayPrevious(_ player: AHAudioPlayer) -> Bool{
         return false
     }
-    public func audioPlayerShouldChangePlaybackRate(_ player: AHAudioPlayer) -> Bool{
+    func audioPlayerShouldChangePlaybackRate(_ player: AHAudioPlayer) -> Bool{
         return false
     }
-    public func audioPlayerShouldSeekForward(_ player: AHAudioPlayer) -> Bool {
+    func audioPlayerShouldSeekForward(_ player: AHAudioPlayer) -> Bool {
         return false
     }
-    public func audioPlayerShouldSeekBackward(_ player: AHAudioPlayer) -> Bool{
+    func audioPlayerShouldSeekBackward(_ player: AHAudioPlayer) -> Bool{
         return false
     }
-    public func audioPlayerGetTractTitle(_ player: AHAudioPlayer) -> String?{return nil}
-    public func audioPlayerGetAlbumTitle(_ player: AHAudioPlayer) -> String?{return nil}
-    public func audioPlayerGetAlbumCover(_ player: AHAudioPlayer, _ callback: @escaping (_ coverImage: UIImage?)->Void) {callback(nil)}
+    func audioPlayerGetTractTitle(_ player: AHAudioPlayer) -> String?{return nil}
+    func audioPlayerGetAlbumTitle(_ player: AHAudioPlayer) -> String?{return nil}
+    func audioPlayerGetAlbumCover(_ player: AHAudioPlayer, _ callback: @escaping (_ coverImage: UIImage?)->Void) {callback(nil)}
 }
 
 
-public final class AHAudioPlayer: NSObject {
-    public static let shared = AHAudioPlayer()
-    public weak var delegate: AHAudioPlayerDelegate?
+final class AHAudioPlayer: NSObject {
+    static let shared = AHAudioPlayer()
+    weak var delegate: AHAudioPlayerDelegate?
     
     
-    public override init() {
+    override init() {
         super.init()
         setupRemoteControl()
     }
@@ -131,12 +100,39 @@ public final class AHAudioPlayer: NSObject {
         }
     }
     
-    fileprivate func updateNowPlaying() {
+    fileprivate func updateNowPlaying(_ forceUpdate: Bool? = false) {
+        guard self.duration > 0.0 else {
+            return
+        }
         // Define Now Playing Info
-        var nowPlayingInfo = [String : Any]()
-        nowPlayingInfo[MPMediaItemPropertyTitle] = self.delegate?.audioPlayerGetTrackTitle(self)
-        nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = self.delegate?.audioPlayerGetAlbumTitle(self)
-        let url = self.asset?.url
+        var nowPlayingInfo:[String: Any]? = MPNowPlayingInfoCenter.default().nowPlayingInfo
+        if nowPlayingInfo == nil {
+            nowPlayingInfo = [String: Any]()
+        }
+        
+        nowPlayingInfo?[MPMediaItemPropertyTitle] = self.delegate?.audioPlayerGetTrackTitle(self)
+        nowPlayingInfo?[MPMediaItemPropertyAlbumTitle] = self.delegate?.audioPlayerGetAlbumTitle(self)
+        
+        
+        
+        nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Double(self.currentTime)
+        nowPlayingInfo?[MPMediaItemPropertyPlaybackDuration] = Double(self.duration)
+        nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = Double(self.rate)
+        // Set the metadata
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
+
+    func updateArtwork() {
+        if let url = self.asset?.url.absoluteString,let thatURL = MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyAssetURL] as? String,
+            url == thatURL{
+            // the url was already set and thatURL is the same as current one.
+            return
+        }
+        
+        guard var nowPlayingInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo,let url = self.asset?.url else {
+            return
+        }
+        nowPlayingInfo[MPMediaItemPropertyAssetURL] = url.absoluteString
         self.delegate?.audioPlayerGetAlbumCover(self, { (image) in
             let url = url
             let thisUrl = self.asset?.url
@@ -154,17 +150,10 @@ public final class AHAudioPlayer: NSObject {
                 }
             }
         })
-        
-        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Double(self.currentTime)
-        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = Double(self.duration)
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = Double(self.rate)
-        // Set the metadata
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
-
     
     /// plackback progress in percentage
-    public var progress: Double {
+    var progress: Double {
         get {
             guard duration > 0.0 && currentTime > 0.0 else {
                 return 0.0
@@ -174,7 +163,7 @@ public final class AHAudioPlayer: NSObject {
     }
     
     /// loaded progress in percentage
-    public var loadedProgress: Double {
+    var loadedProgress: Double {
         get {
             guard duration > 0.0 else {
                 return 0.0
@@ -192,19 +181,18 @@ public final class AHAudioPlayer: NSObject {
     }
     
     // In seconds
-    public var duration: TimeInterval {
+    var duration: TimeInterval {
         get {
             guard let playerItem = self.playerItem else {
                 return 0.0
             }
             let durationCM = playerItem.duration
             let durationSec = CMTimeGetSeconds(durationCM)
-            
             return durationSec
         }
     }
     
-    public var durationPretty: String {
+    var durationPretty: String {
         get {
             guard duration.isFinite else {
                 return ""
@@ -228,7 +216,7 @@ public final class AHAudioPlayer: NSObject {
     
     
     /// In seconds
-    public var currentTime: TimeInterval {
+    var currentTime: TimeInterval {
         get {
             guard let playerItem = self.playerItem else {
                 return 0.0
@@ -240,7 +228,7 @@ public final class AHAudioPlayer: NSObject {
         }
     }
     
-    public var currentTimePretty: String {
+    var currentTimePretty: String {
         get {
             guard currentTime.isFinite else {
                 return ""
@@ -254,7 +242,7 @@ public final class AHAudioPlayer: NSObject {
         }
     }
     
-    public var rate: Float {
+    var rate: Float {
         set {
             guard let player = self.player else {
                 return
@@ -276,7 +264,7 @@ public final class AHAudioPlayer: NSObject {
         }
     }
     
-    public var muted: Bool {
+    var muted: Bool {
         set {
             guard let player = self.player else {
                 return
@@ -289,7 +277,7 @@ public final class AHAudioPlayer: NSObject {
         }
     }
     
-    public var volumn: Float {
+    var volumn: Float {
         set {
             guard let player = self.player else {
                 return
@@ -313,9 +301,9 @@ public final class AHAudioPlayer: NSObject {
     
 }
 
-//MARK:- Public APIs
+//MARK:- APIs
 extension AHAudioPlayer {
-    public func play(url: URL, toTime: TimeInterval? = nil){
+    func play(url: URL, toTime: TimeInterval? = nil){
         guard state == .none || state == .stopped else {
             print("You have to stop the playing first!!")
             return
@@ -355,7 +343,7 @@ extension AHAudioPlayer {
         NotificationCenter.default.post(name: AHAudioPlayerDidSwitchPlay, object: nil)
     }
     
-    public func resume() {
+    func resume() {
         guard let player = player else {
             return
         }
@@ -370,13 +358,14 @@ extension AHAudioPlayer {
         player.play()
         state = .playing
         self.updateNowPlaying()
+        self.updateArtwork()
         // reset isManuallyPaused
         isManuallyPaused = false
         self.delegate?.audioPlayerDidStartToPlay(self)
         NotificationCenter.default.post(name: AHAudioPlayerDidStartToPlay, object: nil)
     }
     
-    public func pause() {
+    func pause() {
         guard let player = player else {
             return
         }
@@ -391,7 +380,7 @@ extension AHAudioPlayer {
         isManuallyPaused = true
     }
     
-    public func stop() {
+    func stop() {
         guard state != .stopped else {
             return
         }
@@ -403,7 +392,7 @@ extension AHAudioPlayer {
     }
     
     
-    public func seek(toProgress progress: Double, _ completion: ((Bool)->Void)? = nil) {
+    func seek(toProgress progress: Double, _ completion: ((Bool)->Void)? = nil) {
         guard progress > 0.0 && progress < 1.0 else {
             return
         }
@@ -414,7 +403,7 @@ extension AHAudioPlayer {
     }
     
     /// For fast forward and fast backword
-    public func seek(withDelta dalta: TimeInterval) {
+    func seek(withDelta dalta: TimeInterval) {
         let jumpToSec = currentTime + dalta
         
         guard jumpToSec > 0.0 && jumpToSec <= duration else {
@@ -424,7 +413,7 @@ extension AHAudioPlayer {
         seek(toTime: jumpToSec)
     }
     
-    public func seek(toTime: TimeInterval, _ completion: ((Bool)->Void)? = nil) {
+    func seek(toTime: TimeInterval, _ completion: ((Bool)->Void)? = nil) {
         let jumoToTime = CMTimeMakeWithSeconds(toTime, Int32(NSEC_PER_SEC))
         
         player?.seek(to: jumoToTime, completionHandler: { (success) in
@@ -433,16 +422,17 @@ extension AHAudioPlayer {
     }
     
     // Change the player's rate to next rate speed
-    public func changeToNextRate() {
+    func changeToNextRate() {
         self.rate = self.getNextRateSpeed().rawValue
     }
     
     // A convenient method for getting the next rate speed
-    public func getNextRateSpeed() -> AHAudioRateSpeed {
+    func getNextRateSpeed() -> AHAudioRateSpeed {
         guard let rateFloat = self.player?.rate else {
             return  AHAudioRateSpeed.one
         }
-        guard let rate = AHAudioRateSpeed.init(rawValue: rateFloat) else {
+        
+        guard let rate =  AHAudioRateSpeed(rawValue: rateFloat) else {
             return  AHAudioRateSpeed.one
         }
         
@@ -539,7 +529,7 @@ fileprivate extension AHAudioPlayer {
 
 //MARK: - KVO for playerItem
 extension AHAudioPlayer {
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if context == &playerContext {
             handlePlayerItem(forKeyPath: keyPath, of: object, change: change, context: context)
             
@@ -663,6 +653,7 @@ extension AHAudioPlayer {
             
             commandCenter.togglePlayPauseCommand.addTarget(handler: {[weak self]  (_) -> MPRemoteCommandHandlerStatus in
                 guard let strongSelf = self else {return .commandFailed}
+                self?.isPausedBeforeEnterBackground = false
                 if strongSelf.state == .paused {
                     strongSelf.resume()
                     return .success
@@ -679,10 +670,9 @@ extension AHAudioPlayer {
             // Add handler for Play Command
             commandCenter.playCommand.addTarget { [weak self] event in
                 guard let strongSelf = self else {return .commandFailed}
+                self?.isPausedBeforeEnterBackground = false
                 if strongSelf.state == .paused {
-                    strongSelf.isPausedBeforeEnterBackground = false
                     strongSelf.resume()
-                    strongSelf.isPausedBeforeEnterBackground = true
                     return .success
                 }else{
                     return .commandFailed
@@ -710,8 +700,11 @@ extension AHAudioPlayer {
             commandCenter.nextTrackCommand.addTarget( handler: {[weak self] (_) -> MPRemoteCommandHandlerStatus in
                 guard let strongSelf = self else {return .commandFailed}
                 guard let delegate = strongSelf.delegate else {return .commandFailed}
+                self?.isPausedBeforeEnterBackground = false
+                self?.stop()
                 if delegate.audioPlayerShouldPlayNext(strongSelf) {
                     self?.updateNowPlaying()
+                    self?.updateArtwork()
                     return .success
                 }else{
                     return .commandFailed
@@ -721,8 +714,11 @@ extension AHAudioPlayer {
             commandCenter.previousTrackCommand.addTarget( handler: {[weak self] (_) -> MPRemoteCommandHandlerStatus in
                 guard let strongSelf = self else {return .commandFailed}
                 guard let delegate = strongSelf.delegate else {return .commandFailed}
+                self?.isPausedBeforeEnterBackground = false
+                self?.stop()
                 if delegate.audioPlayerShouldPlayPrevious(strongSelf) {
                     self?.updateNowPlaying()
+                    self?.updateArtwork()
                     return .success
                 }else{
                     return .commandFailed
@@ -731,6 +727,7 @@ extension AHAudioPlayer {
             
             commandCenter.changePlaybackRateCommand.addTarget(handler: {[weak self] (_) -> MPRemoteCommandHandlerStatus in
                 guard let strongSelf = self else {return .commandFailed}
+                self?.isPausedBeforeEnterBackground = false
                 guard let delegate = strongSelf.delegate else {return .commandFailed}
                 if delegate.audioPlayerShouldChangePlaybackRate(strongSelf) {
                     return .success
@@ -742,6 +739,7 @@ extension AHAudioPlayer {
             
             commandCenter.seekForwardCommand.addTarget(handler: {[weak self] (_) -> MPRemoteCommandHandlerStatus in
                 guard let strongSelf = self else {return .commandFailed}
+                self?.isPausedBeforeEnterBackground = false
                 guard let delegate = strongSelf.delegate else {return .commandFailed}
                 if delegate.audioPlayerShouldSeekForward(strongSelf) {
                     return .success
@@ -752,6 +750,7 @@ extension AHAudioPlayer {
             
             commandCenter.seekBackwardCommand.addTarget(handler: {[weak self] (_) -> MPRemoteCommandHandlerStatus in
                 guard let strongSelf = self else {return .commandFailed}
+                self?.isPausedBeforeEnterBackground = false
                 guard let delegate = strongSelf.delegate else {return .commandFailed}
                 if delegate.audioPlayerShouldSeekBackward(strongSelf) {
                     return .success
@@ -766,7 +765,8 @@ extension AHAudioPlayer {
                 if self?.state == .paused {
                     self?.isPausedBeforeEnterBackground = true
                 }
-                self?.updateNowPlaying()
+                self?.updateNowPlaying(true)
+                self?.updateArtwork()
             })
             NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil, using: {[weak self] (_) in
                 self?.isPausedBeforeEnterBackground = false

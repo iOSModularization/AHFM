@@ -217,27 +217,31 @@ extension AHFMSubscriptionVC {
             return
         }
         btn.isEnabled = false
-        
-        let selectedShows = self.selectedIndexPaths.map { (indexPath) -> Show in
-            let show = subscribedShows[indexPath.row]
-            return show
+        var selectedMap = [Int: Show]()
+        for selected in self.selectedIndexPaths {
+            selectedMap[selected.row] = subscribedShows[selected.row]
         }
         
-        let newSubscribedShows = selectedShows.filter { (show) -> Bool in
-            return !subscribedShows.contains(where: { (s) -> Bool in
-                return s.id == show.id
-            })
+        var newSubscribedShows = [Show]()
+        for (i, show) in subscribedShows.enumerated() {
+            if let _ = selectedMap[i] {
+                
+            }else{
+                newSubscribedShows.append(show)
+            }
         }
+        
+        
         
         self.subscribedShows = newSubscribedShows
-        let IDs = selectedShows.map { (show) -> Int in
+        let IDs = selectedMap.values.map { (show) -> Int in
             return show.id
         }
         self.tableView.deleteRows(at: self.selectedIndexPaths, with: UITableViewRowAnimation.fade)
         
         self.updateEditToolView(numberOfItemsSelected: 0)
         self.navEditBtnTapped(self.navEditBtn)
-        self.delegate?.subscriptionVC(self, shouldUnsubcribedShows: IDs)
+        self.delegate?.subscriptionVC(self, shouldUnsubcribedShows: [Int](IDs))
         
     }
     

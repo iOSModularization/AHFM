@@ -1,20 +1,20 @@
 PODS:
-  - AHAudioPlayer (0.1.2)
-  - AHBannerView (0.2.2)
-  - AHCategoryView (1.2.2)
-  - AHDataModel (0.4.1)
-  - AHDownloader (0.1.7):
+  - AHAudioPlayer (0.1.71)
+  - AHBannerView (0.3.1)
+  - AHCategoryView (1.3.01)
+  - AHDataModel (0.5.1)
+  - AHDownloader (0.1.81):
     - AHDownloadTool
-  - AHDownloadTool (0.1.10)
+  - AHDownloadTool (0.1.12)
   - AHDraggableLayout (0.1.05)
-  - AHFloatingTextView (0.1.2)
+  - AHFloatingTextView (0.1.31)
   - AHFMAudioPlayerManager (0.2.4):
     - AHAudioPlayer
     - AHFMDataCenter
     - AHFMDataTransformers
     - AHFMModuleManager
     - SDWebImage
-  - AHFMAudioPlayerVC (0.2.2):
+  - AHFMAudioPlayerVC (0.2.32):
     - AHAudioPlayer
     - AHBannerView
     - AHFloatingTextView
@@ -63,12 +63,12 @@ PODS:
     - AHServiceRouter
   - AHFMCategoryVCServices (0.1.01):
     - AHFMServices
-  - AHFMDataCenter (0.1.6):
+  - AHFMDataCenter (0.1.7):
     - AHDataModel
     - UIDeviceExtension
   - AHFMDataTransformers (0.1.0):
     - SwiftyJSON
-  - AHFMDownloadCenter (0.1.0):
+  - AHFMDownloadCenter (0.1.1):
     - AHAudioPlayer
     - AHCategoryView
     - AHDownloader
@@ -77,7 +77,7 @@ PODS:
     - StringExtension
     - UIDeviceExtension
     - UIImageExtension
-  - AHFMDownloadCenterManager (0.2.2):
+  - AHFMDownloadCenterManager (0.2.3):
     - AHDownloadTool
     - AHFMAudioPlayerVCServices
     - AHFMBottomPlayerServices
@@ -91,7 +91,7 @@ PODS:
     - AHServiceRouter
   - AHFMDownloadCenterServices (0.1.0):
     - AHFMServices
-  - AHFMDownloaderManager (0.1.7):
+  - AHFMDownloaderManager (0.1.8):
     - AHDownloader
     - AHFMDataCenter
     - AHFMModuleManager
@@ -131,7 +131,7 @@ PODS:
     - AHServiceRouter
   - AHFMEpisodeListVCServices (0.1.0):
     - AHFMServices
-  - AHFMFeature (0.1.0):
+  - AHFMFeature (0.1.02):
     - AHBannerView
     - BundleExtension
     - SDWebImage
@@ -179,7 +179,7 @@ PODS:
     - AHServiceRouter
   - AHFMKeywordVCServices (0.1.0):
     - AHFMServices
-  - AHFMMain (0.1.0):
+  - AHFMMain (0.1.02):
     - AHCategoryView
     - UIImageExtension
   - AHFMMainManager (0.1.01):
@@ -239,7 +239,7 @@ PODS:
   - AHFMSearchVCServices (0.1.0):
     - AHFMServices
   - AHFMServices (0.3.0)
-  - AHFMShowPage (0.1.2):
+  - AHFMShowPage (0.1.4):
     - AHAudioPlayer
     - AHDownloader
     - AHNibLoadable
@@ -277,17 +277,17 @@ PODS:
   - AHFMUserCenterServices (0.1.0):
     - AHFMServices
   - AHNibLoadable (0.1.0)
-  - AHProgressSlider (0.2.0)
-  - AHServiceRouter (0.5.3)
+  - AHProgressSlider (0.2.1)
+  - AHServiceRouter (0.5.4)
   - AHStackButton (0.1.1)
   - Alamofire (4.5.1)
   - BundleExtension (0.1.0)
   - KeychainAccess (3.0.2)
-  - SDWebImage (4.1.1):
-    - SDWebImage/Core (= 4.1.1)
-  - SDWebImage/Core (4.1.1)
+  - SDWebImage (4.1.2):
+    - SDWebImage/Core (= 4.1.2)
+  - SDWebImage/Core (4.1.2)
   - StringExtension (0.1.1)
-  - SVProgressHUD (2.2.1)
+  - SVProgressHUD (2.2.2)
   - SwiftyJSON (3.1.4)
   - UIDeviceExtension (0.1.0)
   - UIImageExtension (0.1.2)
@@ -299,16 +299,16 @@ DEPENDENCIES:
   - AHServiceRouter
 
 SPEC CHECKSUMS:
-  AHAudioPlayer: b90ae3a71eba7c787abc086f8d6d816226cd8ae0
-  AHBannerView: 815e44350db17a493ed9ff01bc299c993e7146a3
-  AHCategoryView: 12d5261208774d9f016d5d9d7a26106ed143437e
-  AHDataModel: b125e87955b1c57c6d07ae824d5c5f559cea433a
-  AHDownloader: 0797ca6a7fc971f4ba5856f20618ba014da78164
-  AHDownloadTool: d942add9da4ab4f87f82d3d63bb194a5631e9bb0
+  AHAudioPlayer: 6ad8f9342116c9f4ecc0198b549e9d1d57c9d119
+  AHBannerView: 3398d651c377e0aaafc2928cc1988e6048e6fc5c
+  AHCategoryView: cbe9d0af0dce0f1d04d1d0e7dfd31b209729a267
+  AHDataModel: bc50b4d7bbbcb7fc64240fff73042287d98fe753
+  AHDownloader: 9b8f94b5828a8efeeb238eef3dc5026cc953b285
+  AHDownloadTool: 3e820e3f17f663e6d641c8e04143f0b09e8b6588
   AHDraggableLayout: a98ad8a9f8881df9168c44b420c07f4346e2978c
-  AHFloatingTextView: c910c64b6bfd485ae26516541e67f88295f97fbb
+  AHFloatingTextView: 317f9fee3eed298f3446b4ab65e2f05191a95c17
   AHFMAudioPlayerManager: 60e2c8f348d6e1d001e62e76cc22533cc426c52f
-  AHFMAudioPlayerVC: 4be9998e9fe9cbe6bd8fcbe6444ae9a6b8040330
+  AHFMAudioPlayerVC: 15e401c869e49aa58bbdcc8ba14afaf982d81cc9
   AHFMAudioPlayerVCManager: 96eac2217e6fb912df805e3a50b5f9bfd2a9a3a7
   AHFMAudioPlayerVCServices: 27bdded45ce340f6bf0265264e64ee2fd26f6d57
   AHFMBottomPlayer: 6ed5382fc6a38f7d0b4263f22d33b8046c6826a4
@@ -317,19 +317,19 @@ SPEC CHECKSUMS:
   AHFMCategoryVC: 82cc6d79f2be3999535d61fbcbca165e96149dc7
   AHFMCategoryVCManager: 14ffff68cff2762f420c907be5a149dadaaf675a
   AHFMCategoryVCServices: 232d6d5f7e7bd1888d3461b971bda0515dc1c3ad
-  AHFMDataCenter: 2190baeb9bff7ebfbc5dd0811eb46e29b7439d24
+  AHFMDataCenter: d762c3292d13a0699e88444531473b0ca82da061
   AHFMDataTransformers: eafcb87a307fbd52ccd61917fa5de1aff6a7bd53
-  AHFMDownloadCenter: 6a5568d2af0b2e02c5a5ed60ae0556cfa95717f2
-  AHFMDownloadCenterManager: ad19a24488741c63d189118316dbd344745fbc7d
+  AHFMDownloadCenter: 82fd424c94c63e3dd5e51e0bdc13d7ec4bfaab43
+  AHFMDownloadCenterManager: ee6cddba53ce5036e6ea7c71b4dfd0ae28eae9c7
   AHFMDownloadCenterServices: 23cf7d1977796512206391c344b8b1e95d1e3b05
-  AHFMDownloaderManager: 38402f7e9fcdca5df340bf45aa32464914b2a185
+  AHFMDownloaderManager: 4fc940fc1a2cd41ea713bc3ab9b13467c9d8e8fa
   AHFMDownloadList: 3352e614434562a8470f384d5f54613bdb074f4f
   AHFMDownloadListManager: 06aaf655965222c41bbcacd6134de742882a90b4
   AHFMDownloadListServices: 5409157c9dfe981f7f88027672d217ba505ed9ba
   AHFMEpisodeListVC: 254520e7983c36350fa1285894958161e02aa15d
   AHFMEpisodeListVCManager: 4a4769293529b1bfbc79e704be9b719b7db6acaf
   AHFMEpisodeListVCServices: c3f1fa78faeeaa22151c213134ad6e603b0a9821
-  AHFMFeature: 2a65d0fb48a8ee384a8b40fc5d11121727017962
+  AHFMFeature: f5280a50b9ca2e7ec985ee627138afb42d363408
   AHFMFeatureManager: 43531ef907080e718bb6b16073d2d91f1faa05de
   AHFMFeatureServices: a67b02ef51fbcec852946d4f9d719d0cca4394d1
   AHFMHistoryVC: ec20e566279f6eda1591d765341da7cc277af45c
@@ -338,7 +338,7 @@ SPEC CHECKSUMS:
   AHFMKeywordVC: d3566ad431f408e8e96492a70b306ee0527324ea
   AHFMKeywordVCManager: 50ec35b422c9f226caad3c739feaa669d3c1c0c1
   AHFMKeywordVCServices: fce1f66afd3c3337edbcc6ff8bb73758ae5099bb
-  AHFMMain: d9a678e3d5c2d8a2c46b05ddaaea30e7d4f702c8
+  AHFMMain: 354138dbf4e656af56b627ebb8f2a882ca993444
   AHFMMainManager: 41f171743af3e53f0f54083be13d9faabb0a1028
   AHFMMainServices: 7724c81aa9dfecc962ac1cfed7b774b364271c2b
   AHFMModuleManager: 301c8a5945a301528d5cba55e4809428ef896141
@@ -348,22 +348,22 @@ SPEC CHECKSUMS:
   AHFMSearchVCService: fa54e85186ffcc801a4d007d394512ea1dd02a45
   AHFMSearchVCServices: bb389c430916468764e130e4bcc17b09ad9ccd63
   AHFMServices: 7c2c52fd7bd0b604fdab05cc9adb13129c218b60
-  AHFMShowPage: bc559f6c5a17615295376d6888120d4bd3c6e920
+  AHFMShowPage: 50cd2add2f1993cde5c716433a10086f2d815837
   AHFMShowPageManger: f4edeffdce2ec6130d8c96db06479164c3b8692b
   AHFMShowPageServices: f5bc995a70d155194528652563ebaf3b94f96fb3
   AHFMUserCenter: d1dd74e8faa4aa7d75d596f69a08e98c6a289d66
   AHFMUserCenterManager: f952e6a4ea974012353f0cab4a66408bbdc9d8e0
   AHFMUserCenterServices: 0b6848f9a7bd111ed13ccc31850adb23d6b59691
   AHNibLoadable: b7d3d7222f8f28e51e07dd619ac6e96cb068e8a7
-  AHProgressSlider: 56150ad907c2c20d61dbe609e53493855103d9bf
-  AHServiceRouter: b7b49e712cf8d697ded8c48151cfcd2ee103a562
+  AHProgressSlider: 7b2dd8969cc6fa0838aa969692b375c7fb66a252
+  AHServiceRouter: 3e50e4ed7dfd4a048ced56f7809dbccf0f54fad8
   AHStackButton: 9e55ac1f606e8283625528e963a5b21cc630f5da
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   BundleExtension: 476c80ebe7af53c74382fa5c6f3f77da41be696a
   KeychainAccess: a986406022dfc7c634c691ad3bec670cc6a32002
-  SDWebImage: caf91ee75671c95eb7b3073cd90649d25f852a88
+  SDWebImage: cb6f9f266a9977741efcbc21e618e8be3734c774
   StringExtension: 25dc64fc7b95063c99c1122ede33ae217107fc28
-  SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
+  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   UIDeviceExtension: 53d1d2177714a3e434e755b6c0fb66678595fce4
   UIImageExtension: 074e3bef49ae8cc2f1dda1906f1209c15dca67d8

@@ -54,7 +54,8 @@ private let ScreenSize = UIScreen.main.bounds.size
     func downloadingVC(_ vc: UIViewController, shouldDeleteEpisodes episodeIDs: [Int], forShow showId: Int)
     
     
-    
+    func viewWillAppear(_ vc: UIViewController)
+    func viewWillDisappear(_ vc: UIViewController)
 }
 
 
@@ -123,7 +124,7 @@ public class AHFMDownloadCenter: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.lightGray
         self.automaticallyAdjustsScrollViewInsets = false
-
+        
         downloadedVC.delegate = self
         downloadingVC.delegate = self
         AHDownloader.addDelegate(self)
@@ -138,7 +139,7 @@ public class AHFMDownloadCenter: UIViewController {
         let frame = CGRect(x: 0, y: 64.0, width: ScreenSize.width, height: ScreenSize.height - 64.0)
         
         var style = AHCategoryNavBarStyle()
-        style.isScrollabel = false
+        style.isScrollable = false
         style.layoutAlignment = .center
         style.showBottomSeparator = true
         style.indicatorColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1.0)
@@ -162,13 +163,14 @@ public class AHFMDownloadCenter: UIViewController {
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.manager?.viewWillAppear(self)
         let urls = AHDownloader.getCurrentTaskURLs()
         self.manager?.downloadCenter(self, shouldCountTaskWithCurrentTasks: urls)
     }
     
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        self.manager?.viewWillDisappear(self)
     }
     
     func backBtnTapped(_ button: UIButton) {
@@ -187,7 +189,7 @@ public class AHFMDownloadCenter: UIViewController {
 extension AHFMDownloadCenter {
     public func loadTotalNumbOfTasks(_ totalCountDict: [String: Any]) {
         totalNumbOfTasks = totalCountDict["count"] as! Int
-        self.categoryView.setBadge(atIndex: 1, numberOfBadge: totalNumbOfTasks)
+        self.categoryView.setBadge(atIndex: 1, badgeNumber: totalNumbOfTasks)
     }
     
     
@@ -247,7 +249,7 @@ extension AHFMDownloadCenter: AHDownloaderDelegate {
             if totalNumbOfTasks < 0 {
                 totalNumbOfTasks = 0
             }
-            self.categoryView.setBadge(atIndex: 1, numberOfBadge: totalNumbOfTasks)
+            self.categoryView.setBadge(atIndex: 1, badgeNumber: totalNumbOfTasks)
         }
     }
 }
@@ -256,7 +258,7 @@ extension AHFMDownloadCenter: AHDownloaderDelegate {
 //MARK:- AHFMDownloadingVC Delegate
 extension AHFMDownloadCenter: AHFMDownloadingVCDelegate {
     func downloadingVCDownloadTaskDidChange(_ vc: AHFMDownloadingVC, currentTasks tasks: Int) {
-        self.categoryView.setBadge(atIndex: 1, numberOfBadge: tasks)
+        self.categoryView.setBadge(atIndex: 1, badgeNumber: tasks)
     }
     /// Call addCurrentDownloads(_:)
     func downloadingVCGetCurrentDownloads(_ vc: AHFMDownloadingVC, urls: [String]){

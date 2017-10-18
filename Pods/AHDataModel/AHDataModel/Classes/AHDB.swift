@@ -60,7 +60,17 @@ extension AHDB {
         }
         
         
-        try tasks()
+        do {
+            try tasks()
+        }catch let error {
+            do {
+                try db.rollback()
+            } catch let rollbackError {
+                print("rollback error after during tasks:\(error)")
+                throw rollbackError
+            }
+            throw error
+        }
         
         guard commit() else {
             do {

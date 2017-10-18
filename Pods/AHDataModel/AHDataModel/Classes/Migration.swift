@@ -9,7 +9,7 @@
 import Foundation
 //MARK:- Migration
 extension AHDataModel {
-    public static func migrate(ToVersion version: Int, migrationBlock: (_ migrator: Migrator, _ newProperty: String)->Void) throws {
+    public static func migrate(toVersion version: Int, migrationBlock: (_ migrator: Migrator, _ newProperty: String)->Void) throws {
         guard let db = Self.db else {
             throw AHDBError.internal(message: "Internal error, database connection does not exist!")
         }
@@ -113,7 +113,7 @@ extension AHDataModel {
         
         //### 6. update renamed and new columns one by one
         for columnName in newColumnNames {
-            let migrator = Migrator(oldTableName: Self.tableName(), newTableName: tempTableName, primaryKey: primaryKeyName, property: columnName)
+            let migrator = Migrator(oldTableName: Self.tableName(), tempTableName: tempTableName, primaryKey: primaryKeyName, property: columnName)
             migrationBlock(migrator, columnName)
             
             guard let sql = migrator.sql else {

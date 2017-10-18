@@ -29,6 +29,15 @@ class Manager: NSObject {
 
 //MARK:- From downloadCenter itslef
 extension Manager {
+    func viewWillAppear(_ vc: UIViewController){
+        let dict: [String: Any] = [AHFMBottomPlayerServices.keyShowPlayer: true, AHFMBottomPlayerServices.keyParentVC: vc]
+        AHServiceRouter.doTask(AHFMBottomPlayerServices.service, taskName: AHFMBottomPlayerServices.taskDisplayPlayer, userInfo: dict, completion: nil)
+    }
+    
+    func viewWillDisappear(_ vc: UIViewController){
+        
+    }
+    
     /// Call loadTotalNumbOfTasks:
     func downloadCenter(_ vc: UIViewController, shouldCountTaskWithCurrentTasks urls: [String]) {
         DispatchQueue.global().async {
@@ -57,7 +66,7 @@ extension Manager {
 extension Manager {
     /// Call loadEpisodesForShow(_:) when data is ready
     func downloadedShowPageVC(_ vc: UIViewController, shouldLoadEpisodesForShow showId: Int){
-
+        
         DispatchQueue.global().async {
             let eps = AHFMEpisode.query("showId", "=", showId).run()
             var arrDict = [[String: Any]]()
@@ -139,7 +148,7 @@ extension Manager {
                             }
                             
                         }
-
+                        
                         
                         epInfo.downloadedProgress = 0.0
                         epInfo.unfinishedFilePath = nil
@@ -258,7 +267,7 @@ extension Manager {
     /// Fetch the show that has an episode with that specific remote URL
     /// Call addHasNewDownloaded(_) when the data is ready
     func downloadedVC(_ vc: UIViewController, shouldFetchShowWithEpisodeRemoteURL url: String){
-        DispatchQueue.global().asyncAfter(deadline: .now() + 0.2) { 
+        DispatchQueue.global().asyncAfter(deadline: .now() + 0.2) {
             AHFMShow.write {
                 let eps = AHFMEpisode.query("audioURL", "=", url).run()
                 if eps.count > 0 , let ep = eps.first {
@@ -375,13 +384,13 @@ extension Manager {
 //MARK:- Data Transform
 extension Manager {
     // Show
-//    self.id = dict["id"] as! Int
-//    self.hasNewDownload = dict["hasNewDownload"] as! Bool
-//    self.thumbCover = dict["thumbCover"] as! String
-//    self.title = dict["title"] as! String
-//    self.detail = dict["detail"] as! String
-//    self.numberOfDownloaded = dict["numberOfDownloaded"] as! Int
-//    self.totalDownloadedSize = dict["totalDownloadedSize"] as! Int
+    //    self.id = dict["id"] as! Int
+    //    self.hasNewDownload = dict["hasNewDownload"] as! Bool
+    //    self.thumbCover = dict["thumbCover"] as! String
+    //    self.title = dict["title"] as! String
+    //    self.detail = dict["detail"] as! String
+    //    self.numberOfDownloaded = dict["numberOfDownloaded"] as! Int
+    //    self.totalDownloadedSize = dict["totalDownloadedSize"] as! Int
     
     func transformShowToDict(show: AHFMShow) -> [String: Any] {
         var dict = [String: Any]()
@@ -396,14 +405,14 @@ extension Manager {
     }
     
     // Episode
-//    self.id = dict["id"] as! Int
-//    self.showId = dict["showId"] as! Int
-//    self.remoteURL = dict["remoteURL"] as! String
-//    self.title = dict["title"] as! String
-//    self.fileSize = dict["fileSize"] as? Int
-//    self.duration = dict["duration"] as? TimeInterval
-//    self.lastPlayedTime = dict["lastPlayedTime"] as? TimeInterval
-//    self.downloadedProgress = dict["downloadedProgress"] as? Double
+    //    self.id = dict["id"] as! Int
+    //    self.showId = dict["showId"] as! Int
+    //    self.remoteURL = dict["remoteURL"] as! String
+    //    self.title = dict["title"] as! String
+    //    self.fileSize = dict["fileSize"] as? Int
+    //    self.duration = dict["duration"] as? TimeInterval
+    //    self.lastPlayedTime = dict["lastPlayedTime"] as? TimeInterval
+    //    self.downloadedProgress = dict["downloadedProgress"] as? Double
     
     func merge(ep: AHFMEpisode, epInfo: AHFMEpisodeInfo?) -> [String: Any] {
         var dict = [String: Any]()
@@ -416,7 +425,7 @@ extension Manager {
             dict["fileSize"] = epInfo.fileSize
             dict["downloadedProgress"] = epInfo.downloadedProgress
         }
-
+        
         return dict
     }
 }

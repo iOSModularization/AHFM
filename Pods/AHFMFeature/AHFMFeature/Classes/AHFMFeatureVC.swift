@@ -41,7 +41,7 @@ public class AHFMFeatureVC: UITableViewController {
     public var manager: AHFMFeatureVCDelegate?
     
     lazy var collectionVCHandler: AHFMCategoryHandler = {
-       let handler = AHFMCategoryHandler()
+        let handler = AHFMCategoryHandler()
         handler.featureVC = self
         return handler
     }()
@@ -118,9 +118,9 @@ public class AHFMFeatureVC: UITableViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-
+        
         bannerView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 200.0)
-
+        
         tableView.contentInset.bottom = 49.0
         tableView.tableHeaderView = bannerView
         tableView.tableFooterView = UIView()
@@ -131,7 +131,7 @@ public class AHFMFeatureVC: UITableViewController {
         tableView.register(nib, forCellReuseIdentifier: AHFMCategoryCellID)
         
     }
-
+    
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -139,7 +139,7 @@ public class AHFMFeatureVC: UITableViewController {
         
         
         if self.shouldReloadEverything {
-             SVProgressHUD.show()
+            SVProgressHUD.show()
             manager?.featureVC(self, shouldLoadBannerEpisodesWithLimit: 8)
             manager?.featureVC(self, shouldLoadShowsForCategory: self.strs)
         }
@@ -160,31 +160,29 @@ public class AHFMFeatureVC: UITableViewController {
         style.indicatorColor = UIColor.red
         style.showPageControl = false
         style.bottomHeight = 5.0
-        style.pageControlColor = UIColor.gray
-        style.pageControlSelectedColor = UIColor.red
         style.placeholder = UIImage(name: "shameless-placeholder-ad", user: self)
         bannerView.delegate = self
         
     }
     
-//    func loadBanners() {
-//        AHFMDataCenter.requestTrending { (topicArray) in
-//            if let sorted = topicArray.sorted(by: { (show1, show2) -> Bool in
-//                return show1.count > show2.count
-//            }).first {
-//                self.bannerEpisodes = sorted
-//                self.bannerView.setup(imageCount: self.bannerEpisodes.count, Style: self.style) { (imageView, index) in
-//                    let ep = self.bannerEpisodes[index]
-//                    let url = URL(string: ep.showFullCover)
-//                    imageView.sd_setImage(with: url)
-//                    imageView.contentMode = .scaleAspectFill
-//                }
-//                self.bannerView.refresh()
-//            }
-//            
-//            
-//        }
-//    }
+    //    func loadBanners() {
+    //        AHFMDataCenter.requestTrending { (topicArray) in
+    //            if let sorted = topicArray.sorted(by: { (show1, show2) -> Bool in
+    //                return show1.count > show2.count
+    //            }).first {
+    //                self.bannerEpisodes = sorted
+    //                self.bannerView.setup(imageCount: self.bannerEpisodes.count, Style: self.style) { (imageView, index) in
+    //                    let ep = self.bannerEpisodes[index]
+    //                    let url = URL(string: ep.showFullCover)
+    //                    imageView.sd_setImage(with: url)
+    //                    imageView.contentMode = .scaleAspectFill
+    //                }
+    //                self.bannerView.refresh()
+    //            }
+    //
+    //
+    //        }
+    //    }
     
     
 }
@@ -227,7 +225,7 @@ extension AHFMFeatureVC: AHBannerViewDelegate {
         imageView.contentMode = .scaleAspectFill
         
     }
-
+    
     public func bannerView(_ bannerView: AHBannerView, didTapped atIndex: Int) {
         guard let eps = self.bannerEpisodes else {
             return

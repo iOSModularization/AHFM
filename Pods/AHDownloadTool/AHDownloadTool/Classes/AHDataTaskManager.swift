@@ -28,7 +28,7 @@ public class AHDataTaskManager: NSObject {
     fileprivate static var dispatchQueue: DispatchQueue = {
         return DispatchQueue(label: AHDataTaskManagerDispatchQueueName)
     }()
-    public fileprivate(set) static var dataTaskDict = [String: AHDataTask]()
+    internal fileprivate(set) static var dataTaskDict = [String: AHDataTask]()
 }
 
 public extension AHDataTaskManager {

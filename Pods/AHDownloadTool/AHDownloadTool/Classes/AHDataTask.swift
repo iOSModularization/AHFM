@@ -27,7 +27,7 @@ public enum AHDataTaskState {
 }
 
 
-public class AHDataTask: NSObject {
+class AHDataTask: NSObject {
     public static var maxConcurrentTasks: Int = 1
     
     
@@ -45,24 +45,24 @@ public class AHDataTask: NSObject {
     // Default is main queue.
     fileprivate static var callBackQueue: DispatchQueue?
     
-    public var tempDir: String?
-    public var cacheDir: String?
-    public var fileName: String?
-    public var fileTempPath: String? {
+    var tempDir: String?
+    var cacheDir: String?
+    var fileName: String?
+    var fileTempPath: String? {
         if let fileName = self.fileName {
             return getTempPath(fileName: fileName)
         }else{
             return nil
         }
     }
-    public var fileCachePath: String? {
+    var fileCachePath: String? {
         if let fileName = self.fileName {
             return getCachePath(fileName: fileName)
         }else{
             return nil
         }
     }
-    public var timeout: TimeInterval = 8.0
+    var timeout: TimeInterval = 8.0
     
     // only for the file in cache, and this size is the current size of the file
     fileprivate var offsetSize: UInt64 = 0
@@ -372,6 +372,7 @@ extension AHDataTask: URLSessionDataDelegate {
         outputStream?.write(values, maxLength: data.count)
         offsetSize = offsetSize + UInt64(data.count)
         
+        // Only forward progress when the second digit changes, e.g. from %32 to %33.
         let newProgress = Double(offsetSize) / Double(totalSize)
         let secondDigitA = Int(newProgress * 100) % 10
         let secondDigitB = Int(progress * 100) % 10
@@ -409,15 +410,6 @@ extension AHDataTask: URLSessionDataDelegate {
         outputStream?.close()
     }
     
-}
-
-
-
-
-extension UIDevice {
-    static var isSimulator: Bool {
-        return ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] != nil
-    }
 }
 
 

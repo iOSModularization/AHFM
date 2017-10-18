@@ -27,10 +27,10 @@ public class AHFMMainVC: UIViewController {
     fileprivate weak var categoryView: AHCategoryView!
     var childVCs = [UIViewController]()
     lazy var featureVC: UIViewController? = {
-       return self.manager?.AHFMMainVCGetFeatureVC(self)
+        return self.manager?.AHFMMainVCGetFeatureVC(self)
     }()
     lazy var userCenterVC: UIViewController? = {
-       return self.manager?.AHFMMainVCGetUserCenterVC(self)
+        return self.manager?.AHFMMainVCGetUserCenterVC(self)
     }()
     lazy var categoryVC: UIViewController? = {
         return self.manager?.AHFMMainVCGetCategoryVC(self)
@@ -66,28 +66,28 @@ public class AHFMMainVC: UIViewController {
         var liveItem = AHCategoryItem()
         liveItem.title = "Live"
         
-       
+        
         let items = [meItem, featureItem, chartItem, radioItem, liveItem]
         
         
         childVCs.append(userCenterVC!)
         childVCs.append(featureVC!)
         childVCs.append(categoryVC!)
-
+        
         for _ in 0..<2 {
             let vc = UIViewController()
             vc.view.backgroundColor = UIColor.red
             childVCs.append(vc)
         }
-
+        
         let frame = CGRect(x: 0, y: 64.0, width: ScreenSize.width, height: ScreenSize.height - 64.0)
         var style = AHCategoryNavBarStyle()
         //        style.offsetX = -16.0
-        style.interItemSpace = 5.0
+        style.interItemSpace = 7.0
         style.itemPadding = 8.0
-        style.isScrollabel = false
+        style.isScrollable = false
         style.layoutAlignment = .left
-        style.isEmbedded = false
+        style.isEmbeddedToView = false
         style.showBottomSeparator = false
         style.indicatorColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1.0)
         style.normalColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1.0)
@@ -101,16 +101,16 @@ public class AHFMMainVC: UIViewController {
         categoryView.select(at: 1)
         self.navigationItem.titleView = categoryView.navBar
         self.navigationController?.navigationBar.barTintColor = UIColor.white
-
+        
     }
-
+    
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.categoryView.setBadge(atIndex: 0, numberOfBadge: 1)
+        self.categoryView.setBadge(atIndex: 0, badgeNumber: 1)
     }
     
     func searchBtnTapped(_ btn: UIButton) {
@@ -121,5 +121,6 @@ public class AHFMMainVC: UIViewController {
             self.navigationController?.pushViewController(searchVC, animated: true)
         }
     }
-
+    
 }
+

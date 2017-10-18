@@ -49,7 +49,7 @@ extension AHFMEpisodeInfo: AHDataModel {
         return [id,localFilePath,unfinishedFilePath,fileSize,lastPlayedTime,downloadedProgress,isDownloaded]
     }
     
-    public init(with dict: [String: Any?]){
+    public init(with dict: [String: Any]){
         self.id = dict["id"] as! Int
         self.localFilePath = dict["localFilePath"] as? String
         self.unfinishedFilePath = dict["unfinishedFilePath"] as? String

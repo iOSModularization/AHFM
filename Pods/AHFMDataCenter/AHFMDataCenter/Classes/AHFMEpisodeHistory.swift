@@ -25,7 +25,7 @@ extension AHFMEpisodeHistory: AHDataModel {
         return [id,addedAt]
     }
     
-    public init(with dict: [String: Any?]){
+    public init(with dict: [String: Any]){
         self.id = dict["id"] as! Int
         self.addedAt = dict["addedAt"] as! Double
     }

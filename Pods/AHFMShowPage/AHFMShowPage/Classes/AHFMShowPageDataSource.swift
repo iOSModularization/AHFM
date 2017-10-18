@@ -7,18 +7,13 @@
 //
 
 import Foundation
+import AHDownloader
 import BundleExtension
 
 fileprivate let EpisodeCellID = "AHFMShowPageCellID"
 
 class AHFMShowPageDataSource: NSObject {
-    var episodes: [Episode]? {
-        didSet{
-            if let _ = episodes {
-                self.tablView?.reloadData()
-            }
-        }
-    }
+    var episodes: [Episode]?
     
     weak var tablView: UITableView? {
         didSet {
@@ -50,7 +45,11 @@ extension AHFMShowPageDataSource:AHFMShowPageCellDelegate {
         guard let cell = cell as? AHFMShowPageCell else {
             return
         }
+        guard let episode = cell.episode, let url = episode.remoteURL else {
+            return
+        }
         cell.pause()
+        AHDownloader.download(url)
     }
 }
 

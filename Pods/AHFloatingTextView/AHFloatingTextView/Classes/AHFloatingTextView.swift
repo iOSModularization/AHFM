@@ -55,10 +55,6 @@ open class AHFloatingTextView: UIScrollView {
         self.isUserInteractionEnabled = false
     }
     
-    override open func didMoveToSuperview() {
-        setupScrollView()
-    }
-    
     fileprivate func setupScrollView() {
         guard !text.isEmpty else {return}
         guard !self.frame.isEmpty else {
@@ -70,7 +66,7 @@ open class AHFloatingTextView: UIScrollView {
         labels.removeAll()
         
         // add labels
-        // if this text string for detail, is less than this view's width, show only one label
+        // if this text string is less than this view's width, show only one label
         // DO NOT use bounds since it's based on scrollView's inner coordinate system
         let count = textSize.width > self.frame.width ? 2 : 1
         for _ in 0..<count {
@@ -91,16 +87,17 @@ open class AHFloatingTextView: UIScrollView {
                 
                 let x = CGFloat(i) * (label.intrinsicContentSize.width + padding)
                 label.frame.origin.x = x
+                label.center.y = self.frame.height * 0.5
             }
         }else{
-            // place this only label on the cetner
+            // position this only label on the cetner
             let label = labels.first!
             label.text = self.text
             label.font = self.font
             label.textColor = self.color
             label.sizeToFit()
             
-            label.center = CGPoint(x: bounds.width * 0.5, y: bounds.height * 0.5)
+            label.center = CGPoint(x: self.frame.width * 0.5, y: self.frame.height * 0.5)
         }
         
         

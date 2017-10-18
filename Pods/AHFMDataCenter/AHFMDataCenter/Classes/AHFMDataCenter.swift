@@ -10,7 +10,7 @@ import Foundation
 import UIDeviceExtension
 import AHDataModel
 
-internal var AHFMDatabasePath: String = UIDevice.isSimulator ? "/Users/Hurricane/Go/Swift/AHFM_v2/db.sqlte" : (NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! as NSString).appendingPathComponent("db.sqlte")
+internal var AHFMDatabasePath: String = (NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! as NSString).appendingPathComponent("db.sqlte")
 
 
 private let AHDatabaseQueue = "AHDatabaseQueue"

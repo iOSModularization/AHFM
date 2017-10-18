@@ -9,19 +9,28 @@
 import Foundation
 
 public typealias AHServiceCompletion = (_ finished: Bool,_ userInfo: [String: Any]?) -> Void
+
+/// If your task is needed to be done asynchronously, use the 'completion' to pass the results, otherwise return the results directly in the closure.
 public typealias AHServiceWorker = (_ userInfo: [String: Any], _ completion: AHServiceCompletion?) -> [String: Any]?
+
+
 public typealias AHServiceVCWorker = (_ userInfo: [String: Any]) -> UIViewController?
 
 
 public enum AHServiceNavigationType{
-    /// Present a server side provided VC
     case present(currentVC: UIViewController)
-    /// Present a server side provided VC with a navVC embedded
+    /// Will wrap a navVC to the target vc, presenting by this currentVC
     case presentWithNavVC(currentVC: UIViewController)
-    /// Push a server side provided VC by the closest navVC to the rootVC
     case push(navVC: UINavigationController)
 }
 
+public protocol AHServiceRouterDelegate {
+    /// Do NOT do navigation yourself! Just return the fallback VC.
+    func fallbackVC(for service: String, task: String, userInfo: [String: Any]) -> UIViewController?
+    
+    /// If your task is needed to be done asynchronously, use the 'completion' to pass the results, otherwise return the results directly.
+    func fallbackTask(for service: String, task: String, userInfo: [String: Any], completion: AHServiceCompletion?) -> [String: Any]?
+}
 
 
 
@@ -84,15 +93,19 @@ private struct AHTask: CustomStringConvertible, Equatable {
 }
 
 public final class AHServiceRouter {
+    /// Your delegate is kept strongly here!!!
+    public static var delegate: AHServiceRouterDelegate?
+    
     // ['serviceName': AHServer]
     fileprivate static var services = [String : AHServer]()
     
-    /// Use this method to provide services/tasks, it does NOT help you navigate VCs.
+    
+    /// If your task is needed to be done asynchronously, use the 'completion' to pass the results, otherwise return the results directly in the closure.
     /// AHServiceRouter does not keep the provided object or does any modification.
     /// - Parameters:
     ///   - service: The service name. This should be unique globally.
     ///   - taskName: The name of the task. This should be unique under the service.
-    ///   - worker: A closure callback that provides more info for the provider to process later when the service is being used.
+    ///   - worker: A closure callback that provides more info for the service provider to process later when the service is being used.
     public static func registerTask(_ service: String, taskName: String, worker: @escaping AHServiceWorker) {
         
         let task = AHTask(taskName: taskName, workerType: AHServiceWorkerType.service(worker))
@@ -129,21 +142,23 @@ public final class AHServiceRouter {
         }
     }
     
+    
+    /// Do a regular task, NOT a navigationVC task!!
     @discardableResult
     public static func doTask(_ service: String, taskName: String, userInfo: [String: Any], completion: AHServiceCompletion?) -> [String: Any]? {
 
         guard let server = services[service] else {
-            assert(false,"AHService: service:\(service) not registered")
-            return nil
+            print("AHService: service:\(service) not registered")
+            return self.delegate?.fallbackTask(for: service, task: taskName, userInfo: userInfo, completion: completion)
         }
         
         guard let task = server.getTask(taskName: taskName) else {
-            assert(false,"AHService: \(service).\(taskName) not found")
-            return nil
+            print("AHService: \(service).\(taskName) not found")
+            return self.delegate?.fallbackTask(for: service, task: taskName, userInfo: userInfo, completion: completion)
         }
         
         guard case let AHServiceWorkerType.service(worker) = task.workerType else {
-            assert(false,"worker type doesn't matched!!")
+            assert(false, "Your task might be a 'navigateVC' task??")
             return nil
         }
         
@@ -151,35 +166,35 @@ public final class AHServiceRouter {
         
     }
     
+    /// The completion closure here is called after completing the navgation by the router. It's not related to the service provider!
     public static func navigateVC(_ service: String, taskName: String, userInfo: [String: Any], type: AHServiceNavigationType, completion: AHServiceCompletion?) {
         
         guard let server = services[service] else {
-            assert(false, "AHService: service:\(service) not registered")
+            print("AHService: service:\(service) not registered")
+            if let vc = self.delegate?.fallbackVC(for: service, task: taskName, userInfo: userInfo) {
+                self.navigateVC(vc, type, completion)
+                completion?(true, nil)
+            }
             return
         }
         
         guard let task = server.getTask(taskName: taskName) else {
-            assert(false,"AHService: \(service).\(taskName) not found")
+            print("AHService: \(service).\(taskName) not found")
+            if let vc = self.delegate?.fallbackVC(for: service, task: taskName, userInfo: userInfo) {
+                self.navigateVC(vc, type, completion)
+                completion?(true, nil)
+            }
             return
         }
         
         guard case let AHServiceWorkerType.navigateVC(worker) = task.workerType else {
-            assert(false, "worker type doesn't matched!!")
+            assert(false, "Your task might be a normal task not a navigationVC task??")
             return
         }
         
         
         if let vc = worker(userInfo) {
-            switch type {
-                case let .present(currentVC):
-                    currentVC.present(vc, animated: true, completion: nil)
-                case let .presentWithNavVC(currentVC):
-                    let navVC = UINavigationController(rootViewController: vc)
-                    currentVC.present(navVC, animated: true, completion: nil)
-                case let .push(navVC):
-                    pushVC(targetVC: vc, navVC: navVC)
-            }
-            completion?(true, nil)
+            self.navigateVC(vc, type, completion)
         }else{
             completion?(false, nil)
         }
@@ -187,7 +202,21 @@ public final class AHServiceRouter {
         
     }
     
-    /// Reuse a VC from a navigationVC, default is the first navigationVC under the application's rootVC, or just the rootVC if it is a navigationVC.
+    private static func navigateVC(_ vc: UIViewController, _ type: AHServiceNavigationType, _ completion: AHServiceCompletion?) {
+        switch type {
+        case let .present(currentVC):
+            currentVC.present(vc, animated: true, completion: nil)
+        case let .presentWithNavVC(currentVC):
+            let navVC = UINavigationController(rootViewController: vc)
+            currentVC.present(navVC, animated: true, completion: nil)
+        case let .push(navVC):
+            pushVC(targetVC: vc, navVC: navVC)
+        }
+        completion?(true, nil)
+    }
+    
+    
+    /// Reuse a VC from a navigationVC, default is the first navigationVC under the application's rootVC, or just the rootVC if it is a navigationVC already.
     public static func reuseVC(navigationVC: UINavigationController? = nil,_ shouldBeReused: (_ currentVC: UIViewController) -> Bool) -> UIViewController? {
         
 

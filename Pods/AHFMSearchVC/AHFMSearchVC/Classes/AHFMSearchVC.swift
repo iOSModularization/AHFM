@@ -215,6 +215,8 @@ extension AHFMSearchVC: UICollectionViewDelegateFlowLayout, UICollectionViewData
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: HeaderReuseID, for: indexPath) as! AHFMSectionSupplementaryCell
                 if let count = self.hotTerms?.count, count > 0 {
                     header.titleLabel.text = "Hot🔥"
+                    header.hideClearBtn = true
+                    header.delegate = nil
                 }else{
                     header.titleLabel.text = ""
                 }

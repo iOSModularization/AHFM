@@ -216,11 +216,15 @@ extension AHFMAudioPlayerVC {
             return
         }
         
-        self.progressSlider.loadedProgress = 0.0
-        self.progressSlider.value = Float(0.0)
-        self.startTimeLabel.text = "\(String.secondToTime(0.0))"
-        self.totalTimeLabel.text = "\(String.secondToTime(playerItem.duration ?? 0.0))"
-        self.shouldUpdateSlider = false
+        if playerItem.lastPlayedTime == nil {
+            self.progressSlider.loadedProgress = 0.0
+            self.progressSlider.value = Float(0.0)
+            self.startTimeLabel.text = "\(String.secondToTime(0.0))"
+            self.totalTimeLabel.text = "\(String.secondToTime(playerItem.duration ?? 0.0))"
+            self.shouldUpdateSlider = false
+        }
+        
+        
         if AHAudioPlayerManager.shared.state == .none || AHAudioPlayerManager.shared.state == .stopped {
             self.playBtn.isSelected = false
             
@@ -533,7 +537,6 @@ extension AHFMAudioPlayerVC {
         bannerStyle.isPagingEnabled = true
         bannerStyle.showIndicator = false
         bannerStyle.showPageControl = true
-        bannerStyle.isPageControlSeparated = true
         bannerStyle.bottomHeight = 20.0
         bannerStyle.pageControlSelectedColor = UIColor.white
         self.bannerBarStyle = bannerStyle
@@ -547,9 +550,7 @@ extension AHFMAudioPlayerVC {
         startTimeLabel.textColor = labelNormalColor
         totalTimeLabel.textColor = labelNormalColor
         
-        let thumbImg = UIImage(name: "player-thumb", user: self)
-        progressSlider.value = 0.0
-        progressSlider.setThumbImage(thumbImg, for: .normal)
+
         progressSlider.minimumTrackTintColor = UIColor.red
         progressSlider.isContinuous = false
         

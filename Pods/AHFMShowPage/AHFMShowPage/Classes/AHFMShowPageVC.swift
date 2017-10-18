@@ -135,6 +135,7 @@ extension AHFMShowPageVC {
             eps.append(ep)
         }
         self.episodes = eps
+        self.currentTableView.reloadData()
         SVProgressHUD.dismiss()
     }
     
@@ -195,12 +196,14 @@ extension AHFMShowPageVC {
         
         manager?.viewWillAppear(self)
         
-        
-        
-        SVProgressHUD.show()
-        manager?.showPageVCShouldLoadInitialShow(self)
-        
-        
+        if self.presentedViewController != nil {
+            // there's a vc presented by this vc
+            // it could be a episodelistVC from bottomPlayer, or a introVC from this VC.
+            
+        }else{
+            SVProgressHUD.show()
+            manager?.showPageVCShouldLoadInitialShow(self)
+        }
     }
     
     public override func viewDidAppear(_ animated: Bool) {
@@ -662,7 +665,7 @@ extension AHFMShowPageVC {
         }
         let state = AHDownloader.getState(url)
         self.episodes?[indexPath.row].downloadState = state
-        
+        print("AAAA")
         updateEpisodeCell(for: indexPath, state: state)
         
     }
@@ -672,7 +675,7 @@ extension AHFMShowPageVC {
         guard let cell = currentTableView.cellForRow(at: indexPath) as? AHFMShowPageCell else {
             return
         }
-        
+        print("BBB")
         
         switch state {
         case .notStarted:
@@ -819,7 +822,7 @@ extension AHFMShowPageVC {
         
         
         titleLabel.frame.size = CGSize(width: 200, height: 64)
-        titleLabel.text = "Title Undefined"
+        titleLabel.text = ""
         titleLabel.textColor = UIColor.white
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont.systemFont(ofSize: 17.0)

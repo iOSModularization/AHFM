@@ -45,7 +45,7 @@ extension AHFMEpisode: AHDataModel {
         return [id,showId,duration,createdAt,showTitle,title,detail,audioURL,buzzScore,showFullCover,showThumbCover]
     }
     
-    public init(with dict: [String: Any?]){
+    public init(with dict: [String: Any]){
         self.id = dict["id"] as! Int
         self.showId = dict["showId"] as! Int
         self.buzzScore = dict["buzzScore"] as? Double

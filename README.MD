@@ -1,6 +1,6 @@
 # AHFM
 ### Brief Demo(the Gif is little bit large, please wait)
-![](https://github.com/iOSModularization/AHFM/blob/master/demo_Gifs/overview.Gif)
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/overview.gif)
 
 
 ### Dependencies
@@ -18,8 +18,8 @@ There are related frameworks written down at each section in [Feature Demos By M
 
 ## Content
 - [Overview](#overview)
-  - [Feature List](#feature-list)
-  - [Test The Project](#test-the-project)
+- [Feature List](#feature-list)
+- [Test The Project](#test-the-project)
 - [Feature Demos By Modules](#feature-demos-by-modules)
   - [Bottom Player](#bottom-player)
   - [Episode List](#episode-list)
@@ -44,7 +44,7 @@ NOTE: Throughout this article, a podcast show is called a show and an audio podc
 A show can contain multiple episodes.
 
 
-### Feature List
+## Feature List
 AHFM caches extensively with local database using [AHDataModel](https://github.com/ivsall2012/AHDataModel).  
 - **Audio Progress Caching**  
 The audio player will record playing progresses every 10s and restore them every time the same episode being played, including when pausing, user kills the app, during background mode.  
@@ -69,7 +69,7 @@ All played episodes will be stored in local database and shown in the history pa
 This subscribing system works locally with the database. AHFM is still a demo project anyway.  
 I'll describe how to make a socket [long connection](#login-and-backend-long-connection) later.
 
-### Test The Project
+## Test The Project
 #### Requirements
 iOS 9.0+(less than 11.0)  
 Xcode 8.0+  
@@ -137,7 +137,7 @@ Tapping on:
 
 The player also restores last played episode and its played progress too, if any.  
 
-![](https://github.com/iOSModularization/AHFM/blob/master/demo_Gifs/bottomPlayer.Gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/bottomPlayer.gif)  
 
 Related frameworks:
 [AHFloatingTextView](https://github.com/ivsall2012/AHFloatingTextView)  
@@ -152,22 +152,22 @@ Related frameworks:
 The show page displays a show's introduction and its episodes.    
 If there's a playing episode that belongs the current show,  
 it will scroll to that specific episode and give it a red indicator on the left.  
-![](https://github.com/iOSModularization/AHFM/blob/master/demo_Gifs/showPage_overview.Gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/showPage_overview.gif)  
 
 #### Header
 it also has a nice sticky header and it's particularly sticky when the show contains current playing episode.
-![](https://github.com/iOSModularization/AHFM/blob/master/demo_Gifs/showPage_header.Gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/showPage_header.gif)  
 
 #### Download
 It also correctly handles episode's download states at any given time!  
 NOTE: All download related states(paused, downloading, downloaded) are handled correctly throughout the app at any given time!    
-![](https://github.com/iOSModularization/AHFM/blob/master/demo_Gifs/showPage_download.Gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/showPage_download.gif)  
 
 #### Recycling View Controllers  
 The show page is one of the two pages in the app(the other is Audio Player page), implemented viewController recycling.  
 The following Gif shows that we started from "FT Alphachat", tapped into some other show then found "FT Alphachat" again at the "recommended" section.  
 When we tapped it, the navigationController didn't push, but popped to previous show page for "FT Alphachat" entering from the left side.  
-![](https://github.com/iOSModularization/AHFM/blob/master/demo_Gifs/showPage_recycling.Gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/showPage_recycling.gif)  
 
 Related Framewrks:
 * [AHProgressSlider](https://github.com/ivsall2012/AHProgressSlider)  
@@ -185,7 +185,7 @@ It always remembers episode's last played time history and ready to restore the 
 
 #### Overview and Recycling
 In the Gif demo, pay attention that the audio player only being push at the first time and other times it's being **popped** -- entering from the left side to the right -- it's being recycled(or reused).  
-![](https://github.com/iOSModularization/AHFM/blob/master/demo_Gifs/audioPlayer.Gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/audioPlayer.gif)  
 
 NOTE: The retarded dragging in the demo is now fixed. 
 Related frameworks:
@@ -202,7 +202,7 @@ Related frameworks:
 You can get to the Download List from only one place -- a [Show Page](#show-page).    
 It first probes episode's file sizes then store them into database.  
 And it's a download list, of course it can initiate download tasks.  
-![](https://github.com/iOSModularization/AHFM/blob/master/demo_Gifs/downloadList.Gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/downloadList.gif)  
 
 Related Frameworks:  
 * [AHDownloadTool](https://github.com/ivsall2012/AHDownloadTool)  
@@ -225,12 +225,12 @@ Those two section pages are hosted by [AHCategoryView](https://github.com/ivsall
 #### Caching Downloading Tasks  
 The following Gif shows that at some point, there were two tasks that got paused then the app was killed, then re-launch. And that two tasks were successfully cached then restored and finished the download tasks with complete files.  
 In fact, the tasks would get cached even without pausing first.  
-![](https://github.com/iOSModularization/AHFM/blob/master/demo_Gifs/downloadCenter_overview.Gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/downloadCenter_overview.gif)  
 
 #### Delete Shows and Episodes  
 Additionally for the downloaded page, You can delete the whole show's downloaded episodes or you tap into it and delete episodes from that page.  
 
-![](https://github.com/iOSModularization/AHFM/blob/master/demo_Gifs/downloadCenter_deletion.Gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/downloadCenter_deletion.gif)  
 
 Related framework:  
 * [AHCategoryView](https://github.com/ivsall2012/AHCategoryView) for downloaded/downloading section pages   
@@ -246,7 +246,7 @@ Related framework:
 The search page is for searching episodes. And it comes with trending terms from Twitter reportedly.  
 Though it can't do auto-complete search since the server just simply doesn't support it.  
 BTW, the JSON data is from www.audiosear.ch. Thank you for your free services!!  
-![](https://github.com/iOSModularization/AHFM/searchPage.Gif)  
+![](https://github.com/iOSModularization/AHFM/searchPage.gif)  
 
 
 ### Category Page
@@ -258,7 +258,7 @@ The category page is a draggable UICollectionView and it's topic-based.
 The order of the topics is cached into disk so that it wouldn't get lost.  
 
 
-![](https://github.com/iOSModularization/AHFM/blob/master/demo_Gifs/category.Gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/category.gif)  
 
 ### Play History
 1. [AHFMHistoryVC](https://github.com/iOSModularization/AHFMHistoryVC)  
@@ -268,7 +268,7 @@ The order of the topics is cached into disk so that it wouldn't get lost.
 The history records every episode played and their played progresses.  
 It only displays the most recent 15 of those episodes though.  
 It can be accessed through [Bottom Player](#buttom-player) and [User Center](#user-center)  
-![](https://github.com/iOSModularization/AHFM/blob/master/demo_Gifs/history.Gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/history.gif)  
 
 
 ### User Center
@@ -279,7 +279,7 @@ It can be accessed through [Bottom Player](#buttom-player) and [User Center](#us
 User center is a really simple page which consists of subscriptions, downloads and history.  
 
 The following Gif show that a show will be subscribed then deleted.  
-![](https://github.com/iOSModularization/AHFM/blob/master/demo_Gifs/userCenter.Gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/userCenter.gif)  
 
 ### Episode List
 1. [AHFMEpisodeListVC](https://github.com/iOSModularization/AHFMEpisodeListVC)  
@@ -288,7 +288,7 @@ The following Gif show that a show will be subscribed then deleted.
 
 Episode list is also a really simple page and serves as an episode picker for the Audio Player and Bottom Player.
 
-![](https://github.com/iOSModularization/AHFM/blob/master/demo_Gifs/episodeList.Gif) 
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/episodeList.gif) 
 
 
 ## Related Framework

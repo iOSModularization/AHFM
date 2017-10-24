@@ -39,7 +39,7 @@ There are related frameworks written down at each section in [Feature Demos By M
 ## Overview
 AHFM is a mid-level complex podcast iOS app that consists of [50+ modules](https://github.com/iOSModularization), including 8 utility modules and 10 marjor INDEPENDENT business modules -- all orchestrated by [AHServiceRouter](https://github.com/ivsall2012/AHServiceRouter).  
 AHFM has one particularly shining feature that other open source projects, perhaps a lot of production apps, **don't have** -- built with a **highly distributed Architecture** -- better than [Uber's](https://eng.uber.com/new-rider-app/)!  
-For more info about the Architecture: [Featuring Distributed Architecture](#distributed-Architecture) and my article [A Highly Distributed Architecture for Large-scale Collaborations](https://github.com/ivsall2012/A-Highly-Distributed-Architecture-for-Large-scale-Collaborations)
+For more info about the Architecture: [Featuring A Distributed Architecture](#featuring-a-distributed-architecture) and my article [A Highly Distributed Architecture for Large-scale Collaborations](https://github.com/ivsall2012/A-Highly-Distributed-Architecture-for-Large-scale-Collaborations)
 
 NOTE: Throughout this article, a podcast show is called a show and an audio podcast track is called an episode. 
 A show can contain multiple episodes.

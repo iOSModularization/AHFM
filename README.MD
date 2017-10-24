@@ -20,6 +20,7 @@ There are related frameworks written down at each section in [Feature Demos By M
 - [Overview](#overview)
 - [Feature List](#feature-list)
 - [Test The Project](#test-the-project)
+- [Featuring A Distributed Architecture](#featuring-a-distributed-architecture)
 - [Feature Demos By Modules](#feature-demos-by-modules)
   - [Bottom Player](#bottom-player)
   - [Episode List](#episode-list)

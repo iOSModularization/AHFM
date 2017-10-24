@@ -32,7 +32,6 @@ There are related frameworks written down at each section in [Feature Demos By M
   - [Category Page](#category-page)
   - [Play History](#play-history)
   - [User Center](#user-center)
-- [Featuring A Distributed Architecture](#featuring-a-distributed-Architecture)
 - [Related Frameworks](#related-frameworks)
 
 
@@ -218,11 +217,11 @@ The download Center consists of two parts: 1) left side downloaded page 2) right
 
 #### Downloaded Page
 The downloaded page displays shows that has more than one downloaded episodes.  
-
+(no gif demo provided)
 #### Downloading page
 The downloading page displays all currently downloading/pausing tasks, including those didn't finish last time.  
 Those two section pages are hosted by [AHCategoryView](https://github.com/ivsall2012/AHCategoryView).   
-
+(no gif demo provided)
 #### Caching Downloading Tasks  
 The following Gif shows that at some point, there were two tasks that got paused then the app was killed, then re-launch. And that two tasks were successfully cached then restored and finished the download tasks with complete files.  
 In fact, the tasks would get cached even without pausing first.  
@@ -247,7 +246,7 @@ Related framework:
 The search page is for searching episodes. And it comes with trending terms from Twitter reportedly.  
 Though it can't do auto-complete search since the server just simply doesn't support it.  
 BTW, the JSON data is from www.audiosear.ch. Thank you for your free services!!  
-![](https://github.com/iOSModularization/AHFM/searchPage.gif)  
+![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/searchPage.gif)  
 
 
 ### Category Page
@@ -292,7 +291,7 @@ Episode list is also a really simple page and serves as an episode picker for th
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/episodeList.gif) 
 
 
-## Related Framework
+## Related Frameworks
 The following 8 frameworks are made with native iOS frameworks fully.  
 * [AHDataModel](https://github.com/ivsall2012/AHDataModel) for all persistence layers  
 * [AHCategoryView](https://github.com/ivsall2012/AHCategoryView)  

@@ -13,6 +13,10 @@ NOTE: The download parts are from [AHDownloader](https://github.com/ivsall2012/A
 Other than those three frameworks, other parts of the project, including utility tools, are all home-made!!  
 There are related frameworks written down at each section in [Feature Demos By Modules](#feature-demos-by-modules) and also a summary at [Related Frameworks](#related-frameworks). 
 
+Here is the Sketch file:  
+https://github.com/iOSModularization/AHFM/blob/master/AHFM.sketch  
+
+
 \**AHFM clones most of its features from [蜻蜓FM](https://itunes.apple.com/us/app/id506685538?mt=8).*     
 
 

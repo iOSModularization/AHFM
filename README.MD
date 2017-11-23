@@ -1,4 +1,4 @@
-[Switch to English]()
+[Switch to English](https://github.com/iOSModularization/AHFM/tree/EN)
 # AHFM
 AHFM是一个精简版的[蜻蜓FM](https://itunes.apple.com/us/app/id506685538?mt=8)克隆  
 ### Overview(这个动图有点大 会有点卡，请耐心等待几秒 让它下载完成)

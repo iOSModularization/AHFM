@@ -1,31 +1,30 @@
+[Switch to English]()
 # AHFM
-### Brief Demo(the Gif is little bit large, please wait)
+AHFM是一个精简版的[蜻蜓FM](https://itunes.apple.com/us/app/id506685538?mt=8)克隆  
+### Overview(这个动图有点大 会有点卡，请耐心等待几秒 让它下载完成)
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/overview.gif)
 
 
 ### Dependencies
-AHFM only uses three third-party frameworks: 
-1. Alamofire(for JSON requests and OAuth ONLY).  
+AHFM只有了3个第三方开源库：
+1. Alamofire(只用于JSON数据请求和OAuth验证).  
 2. SwiftJSON  
 3. SDWebImage     
-NOTE: The download parts are from [AHDownloader](https://github.com/ivsall2012/AHDownloader) which doesn't depend on Alamofire.  
+NOTE: 下载部分用的是自己做的[AHDownloader](https://github.com/ivsall2012/AHDownloader)   
 
-Other than those three frameworks, other parts of the project, including utility tools, are all home-made!!  
-There are related frameworks written down at each section in [Feature Demos By Modules](#feature-demos-by-modules) and also a summary at [Related Frameworks](#related-frameworks). 
+除了上面提到的3个第三方库外，其他的各种UI和功能都是自己做的。
 
-Here is the Sketch file:  
+自己画的资源文件(Sketch文件):  
 https://github.com/iOSModularization/AHFM/blob/master/AHFM.sketch  
 
 
-\**AHFM clones most of its features from [蜻蜓FM](https://itunes.apple.com/us/app/id506685538?mt=8).*     
 
-
-## Content
-- [Overview](#overview)
-- [Feature List](#feature-list)
-- [Test The Project](#test-the-project)
-- [Featuring A Distributed Architecture](#featuring-a-distributed-architecture)
-- [Feature Demos By Modules](#feature-demos-by-modules)
+## 目录
+- [简介](#简介)
+- [功能特点](#功能特点)
+- [测试项目](#测试项目)
+- [关于组件化](#关于组件化)
+- [功能模块展示](#功能模块展示)
   - [Bottom Player](#bottom-player)
   - [Episode List](#episode-list)
   - [Show Page](#show-page)
@@ -36,114 +35,106 @@ https://github.com/iOSModularization/AHFM/blob/master/AHFM.sketch
   - [Category Page](#category-page)
   - [Play History](#play-history)
   - [User Center](#user-center)
-- [Related Frameworks](#related-frameworks)
+- [相关Frameworks](#相关Frameworks)
 
 
-## Overview
-AHFM is a mid-level complex podcast iOS app that consists of [50+ modules](https://github.com/iOSModularization), including 8 utility modules and 10 marjor INDEPENDENT business modules -- all orchestrated by [AHServiceRouter](https://github.com/ivsall2012/AHServiceRouter).  
-AHFM has one particularly shining feature that other open source projects, perhaps a lot of production apps, **don't have** -- built with a **highly distributed Architecture** -- better than [Uber's](https://eng.uber.com/new-rider-app/)!  
-For more info about the Architecture: [Featuring A Distributed Architecture](#featuring-a-distributed-architecture) and my article [A Highly Distributed Architecture for Large-scale Collaborations](https://github.com/ivsall2012/A-Highly-Distributed-Architecture-for-Large-scale-Collaborations)
-
-NOTE: Throughout this article, a podcast show is called a show and an audio podcast track is called an episode. 
-A show can contain multiple episodes.
+## 简介
+AHFM是一个中等中等复杂的Swift项目。它使用了[高度组件化方案](https://github.com/iOSModularization/AHFM#featuring-a-distributed-architecture)（正在制作中文版的，过几天就上）。  
+它由10个不同的业务组件组成。项目一共有超过50个的pod。[所有的pod在这里](https://github.com/iOSModularization)。  
+因为使用了组件化，这让在团队开发的情况下，每个工程师都能聚焦自己的业务组件而几乎不受整个项目的配置环境影响。每个业务组件就像一个个独立的插件，调试起来非常方便。[了解更多](https://github.com/iOSModularization/AHFM#featuring-a-distributed-architecture)
 
 
-## Feature List
-AHFM caches extensively with local database using [AHDataModel](https://github.com/ivsall2012/AHDataModel).  
-- **Audio Progress Caching**  
-The audio player will record playing progresses every 10s and restore them every time the same episode being played, including when pausing, user kills the app, during background mode.  
+## 功能特点
+AHFM使用了[AHDataModel](https://github.com/ivsall2012/AHDataModel)来做本地持久化库。
+- **缓存正在播放音频的进度**  
+音频的播放进度会被缓存起来，就算进入后台播放，也会缓存。当下次再播放到这个音频的时候，会自动播放上次的进度。
 
-- **Download Progress Caching**  
-Downloading tasks will be cached when user pauses them, put the app in background and even kill the app.  
-AHFM archived this download capabilities through [AHDownloader](https://github.com/ivsall2012/AHDownloader).
+- **缓存下载进度**  
+使用自己做的下载器[AHDownloader](https://github.com/ivsall2012/AHDownloader)。支持断点续传。自动暂停和缓存进度，当应用进入后台或者被用户终结掉。
 
-- **Background Playing Mode**  
-The audio player, [AHAudioPlayer](https://github.com/ivsall2012/AHAudioPlayer), already handled background playing mode, including album image, next/previous play and of course, play/pause.
+- **后台播放模式**  
+使用自己做的音频播放器[AHAudioPlayer](https://github.com/ivsall2012/AHAudioPlayer),通过代理实现了后台播放、暂停、上一首/下一首、专辑画面等功能。 
 
-- **Audio File Size Probing**   
-Since the JSON data doesn't contain file sizes originally, AHFM uses [AHDownloadTool](https://github.com/ivsall2012/AHDownloadTool)'s AHFileSizeProbe for file size detecting and save them into database.
+- **音频文件大小探测**   
+因为服务器数据原本就是不带音频文件大小的, 所有自己做了个文件大小探测器。探测器在[AHDownloadTool](https://github.com/ivsall2012/AHDownloadTool)里面的AHFileSizeProbe。
 
 - **Manage Local Albums and episodes**
-After an episode being downloaded, you can play it locally and delete the episode, or the whole album if you want. 
+可以管理已经下载好的专辑和单个音频。
 
 - **Play History**  
-All played episodes will be stored in local database and shown in the history page with their played-progress.
+可以记录和显示播放历史、播放进度。
 
 - **A Simple Subscribe/unsubscribe system**  
-This subscribing system works locally with the database. AHFM is still a demo project anyway.  
-I'll describe how to make a socket [long connection](#login-and-backend-long-connection) later.
+一个本地的 假的订阅系统。
 
-## Test The Project
+## 测试项目
 #### Requirements
 iOS 9.0+(less than 11.0)  
 Xcode 8.0+  
-NOTE: It's not fully tested on iOS11, though it's functioning well without a crash.  
-But most of the problem is from the "safe area" and tablView is not adjusted properly.   
-iOS 10.2 is OK.  
+NOTE: 在iOS11上运行，UITablView的inset会不正确。但小于iOS11的版本都OK。  
+NOTE: **因为我用的数据是在美国的免费电台数据提供商。刚收到邮件，他们要在11月28日关闭这个免费的REST服务了:(( 我会尽快修复的，找其他免费的或者自己搞个爬虫。但这个项目所展示的技术和思想是不变的。只有2个地方要改 1）数据请求地址 2）数据的transformer. 其他的逻辑都不用改。**
 
-#### Steps
-1. [Install Cocoapods](https://guides.cocoapods.org/using/getting-started.html)
-2. Open your terminal and add the private specs [AHFMSpecs](https://github.com/iOSModularization/AHFMSpecs)  
+#### 步骤
+1. [安装Cocoapods](https://guides.cocoapods.org/using/getting-started.html)  
+2. 打开你Macbook的terminal，然后添加[AHFMSpecs](https://github.com/iOSModularization/AHFMSpecs)进你的CocoaPods. 运行下面命令：  
 ```ruby
 pod repo add AHFMSpecs https://github.com/iOSModularization/AHFMSpecs.git
 ```
 
-3. Clone [AHFM](https://github.com/iOSModularization/AHFM)  
+3. 克隆[AHFM](https://github.com/iOSModularization/AHFM)项目   
 ```ruby
 git clone https://github.com/iOSModularization/AHFM.git
 ```
 
-4. Go to the directory of AHFM you just cloned and update pods through terminal  
+4. update一下  
 ```ruby
 pod update
 ```
 
-5. Open AHFM.xcworkspace  
-6. Choose a simulator or your real device(recommended) and do a build-and-run  
+5. 打开AHFM.xcworkspace  
+6. 选择一个iPhone模拟器或者用真机测试。 
 
 
-### Featuring A Distributed Architecture
-AHFM uses a flat architecture and divides all services and business logics into fined-grained modules.    
-All major modules are ABSOLUTE INDEPENDENT -- Not aware of the entire project and any business related logics.
-And all modules are directed by [AHServiceRouter](https://github.com/ivsall2012/AHServiceRouter) which acts like a central traffic control center.
-A major(main) module usually has a service module and a manager module.  
-The followings are a short description of a major module:  
+### 关于组件化  
+在[iOS高度组件化](https://github.com/iOSModularization/AHFM#featuring-a-distributed-architecture)中，我给出了一个相对主流方案更优化的组件化方案[The Service Router Architecture](https://github.com/ivsall2012/A-Highly-Distributed-Architecture-for-Large-scale-Collaborations/blob/master/SRA.md)。  
+每一个功能模块都是一个SRA单元。  
+我看了很多主流的组件化方案，他们都不错，就是都是用Objective-C的，然后他们都在类的load方法进行注册或配置操作。但在Swift里，那个方法将要过期。而且Swift更加提倡懒加载, 不像Objective-C, Swift不会一下子把所有的类在启动时加载一遍。  
+简单地来说，这个方案，或者说是一种Architecture，使用[AHServiceRouter](https://github.com/ivsall2012/AHServiceRouter)负责组件间通讯，然后每个组件或者功能模块就是一个SRA单元，它们都包含3个子模块(pod):
 
-1. **The Main**  
-It is a small enough business UI module using MVC or MVVM Architecture.   
-It usually is just one page of screen.
-It is INDEPENDENT and reusable -- you can just for example "pod 'AHFMBottomPlayer'" and use it in another project without changing a line!  
+1. **Main**  
+这个pod模块是一个足够小但不是太小的颗粒化**UI功能**。比如说一个登录界面但不包含网络、本地存储和其他验证功能。再比如说，一个订单界面，一个用户中心。它们只是一个UI界面，它自身只会通过代理向外界要数据或者传递数据，通过public方法来触发事件，仅此而已。  
+因为这个模块是delegate驱动的，所以它可以说是独立于你的项目，你可以把它想象成一个UITablView或者UICollectionView -- 他们根本不关心网络和数据处理，只关心展示UI控件。这个模块可以有自己的数据模型，但绝不公开，外界传数据进来的时候，数据必需是基本数据类型，比如字典，必需保证数据一定正确以便能一拿数据，就可以创建模型了。  
+这样使用私有的数据模型是为了不被各种公有数据模型入侵到项目的各个角落。  
 
-2. **The Service**  
-It is also an independent module and contains keys of services that the main module providing to the public so that outsiders can use [AHServiceRouter](https://github.com/ivsall2012/AHServiceRouter) to route to it or use its services. (AHServiceRouter routes by strings of keys). It's purely for routing pages.  
+2. **Service**  
+这其实是一纯字符串的类，也是一个pod。 这些字符串都被用在[AHServiceRouter](https://github.com/ivsall2012/AHServiceRouter)里。它们有3类：1）此服务的服务名称 2）在此服务下的各种任务名 3）某个任务下的参数名称以及这些参数是否可选。  
+因为[AHServiceRouter](https://github.com/ivsall2012/AHServiceRouter)会用到这3类字符串名称来进行路由。  
 
-3. **The Manager**  
-It's a pure business logics manager which processes and handles data/events from the main module.   
-It also imports other service modules and decides which page to route according to those events.  
+3. **Manager**  
+这是一个强业务逻辑pod模块。因为到此为止，我们只有一个UI界面模块和一个字符串名称模块。我们还需要对外提供注册服务。对外提供包括网络数据请求、"Main"模块delegate方法实现、主动触发"Main"模块事件（类似UITableView的reload方法）、页面跳转和持久化。  
+如果你仔细一点，你会发现上面的所有这些都是强业务相关的 -- 每个模块，每个项目都有不同的要求，可移植性很差。  
+所以现在是业务界面是独立的，但业务逻辑只在这个Manager模块中实现。  
+如果想了解更多，请移步到[iOS高度组件化方案](https://github.com/ivsall2012/A-Highly-Distributed-Architecture-for-Large-scale-Collaborations)。（正在制作中文版的，过几天就上）
 
-For more info [A Highly Distributed Architecture for Large-scale Collaborations](https://github.com/ivsall2012/A-Highly-Distributed-Architecture-for-Large-scale-Collaborations)
-
-## Feature Demos By Modules
-All the major modules are consists of three parts: 1) main 2) service 3) manager.  
-For more info [Featuring A Distributed Architecture](#featuring-a-distributed-Architecture).  
-
+## 功能模块展示
+以下的每一个功能都是一个SRA组件单元。  
 ### Bottom Player
 1. [AHFMBottomPlayer](https://github.com/iOSModularization/AHFMBottomPlayer)  
 2. [AHFMBottomPlayerServices](https://github.com/iOSModularization/AHFMBottomPlayerServices)  
 3. [AHFMBottomPlayerManager](https://github.com/iOSModularization/AHFMBottomPlayerManager)  
 
-The bottom player is a mini audio control panel shown at the bottom of the app most of the time.  
-Tapping on:  
-- left list bar, will route to [Episode List](#episode-list) page.  
-- middle area, routes to [Audio Player](#audio-player).  
-- right the play button, controls audio playback  
-- the far right corner button is for [Play History](#play-history)  
+Bottom player就是在屏幕底部的迷你播放器：  
+你可以按:  
+- 左边的list bar跳转到[Episode List](#episode-list)页面.    
+- 中间文字部分跳转到[Audio Player](#audio-player).    
+- 右边播放或者暂停按钮  
+- 最右边的按钮跳转到[Play History](#play-history)  
 
-The player also restores last played episode and its played progress too, if any.  
+这个底部迷你播放器也可以显示之前的播放进度 
 
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/bottomPlayer.gif)  
 
-Related frameworks:
+相关framework:
 [AHFloatingTextView](https://github.com/ivsall2012/AHFloatingTextView)  
 
 
@@ -153,27 +144,23 @@ Related frameworks:
 * [AHFMShowPageManager](https://github.com/iOSModularization/AHFMShowPageManger)  
 
 #### Overview
-The show page displays a show's introduction and its episodes.    
-If there's a playing episode that belongs the current show,  
-it will scroll to that specific episode and give it a red indicator on the left.  
+这是专辑首页。显示一些简介和它的音频节目。如果当前播放的音频是本专辑其中的一个音频，那么左边就会有个红色条提示用户。跟QQ音乐的差不多。    
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/showPage_overview.gif)  
 
 #### Header
-it also has a nice sticky header and it's particularly sticky when the show contains current playing episode.
+头部有一个蛮不错的、可拉伸的动画效果。  
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/showPage_header.gif)  
 
 #### Download
-It also correctly handles episode's download states at any given time!  
-NOTE: All download related states(paused, downloading, downloaded) are handled correctly throughout the app at any given time!    
+每个音频的右边都会有下载状态的图标，当然也可以直接点下载。    
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/showPage_download.gif)  
 
-#### Recycling View Controllers  
-The show page is one of the two pages in the app(the other is Audio Player page), implemented viewController recycling.  
-The following Gif shows that we started from "FT Alphachat", tapped into some other show then found "FT Alphachat" again at the "recommended" section.  
-When we tapped it, the navigationController didn't push, but popped to previous show page for "FT Alphachat" entering from the left side.  
+#### 控制器重用  
+[AHServiceRouter](https://github.com/ivsall2012/AHServiceRouter)支持控制器重用 -- 可以拿到之前的有相同数据模型的控制器，以此来避免太深的导航层级。  
+下面的这张Gif展示了 显示在"FT Alphachat"主页, 然后跳到另外一个页面，然后因为选了"FT Alphachat"，所有又跳回来了。    
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/showPage_recycling.gif)  
 
-Related Framewrks:
+相关Framewrks:
 * [AHProgressSlider](https://github.com/ivsall2012/AHProgressSlider)  
 * [AHAudioPlayer](https://github.com/ivsall2012/AHAudioPlayer)  
 
@@ -183,19 +170,19 @@ Related Framewrks:
 2. [AHFMShowPageServices](https://github.com/iOSModularization/AHFMAudioPlayerVCServices)  
 3. [AHFMAudioPlayerVCManager](https://github.com/iOSModularization/AHFMAudioPlayerVCManager)  
 
-The audio player has all the functionalities a standard audio player has: next/previous episode, fast-forward/backward 10s, speeds 1.0/1.25/1.5/1.75/2.0.  
-It also has a [Episode List](#episode-list) at left corner list bar and a [Show Page](#show-page) by tapping the middle show cover.  
-It always remembers episode's last played time history and ready to restore the progress.  
+一个标准的音频播放器: 下一个/上一个音频, 快进/快退10秒, 语速1.0/1.25/1.5/1.75/2.0。  
+右边的list bar会跳到[Episode List](#episode-list)。如果你点击中间的专辑图片会跳到专辑的[Show Page](#show-page)。   
+这个播放器会自动播放上一下的进度。还有可以播放本地下载好的文件，如果有的话。
 
-#### Overview and Recycling
-In the Gif demo, pay attention that the audio player only being push at the first time and other times it's being **popped** -- entering from the left side to the right -- it's being recycled(or reused).  
+#### 演示和控制器重用
+动图所展示的播放器都是被pop出来的，也就是重用之前的播放器。   
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/audioPlayer.gif)  
 
-NOTE: The retarded dragging in the demo is now fixed. 
-Related frameworks:
-* [AHBannerView](https://github.com/ivsall2012/AHBannerView) for middle bannerView  
-* [AHProgressSlider](https://github.com/ivsall2012/AHProgressSlider) for progress slider with loaded progress  
-* [AHFloatingTextView](https://github.com/ivsall2012/AHFloatingTextView) for floating header at the top
+NOTE: 动图里的拖拽有点迟钝，但现在已经修复了。  
+相关frameworks:
+* [AHBannerView](https://github.com/ivsall2012/AHBannerView) -- 中间的专辑View  
+* [AHProgressSlider](https://github.com/ivsall2012/AHProgressSlider) -- 播放器带下载进度条  
+* [AHFloatingTextView](https://github.com/ivsall2012/AHFloatingTextView) -- 顶部专辑浮动文字  
 * [AHAudioPlayer](https://github.com/ivsall2012/AHAudioPlayer)  
 
 ### Download List
@@ -203,13 +190,11 @@ Related frameworks:
 2. [AHFMDownloadListServices](https://github.com/iOSModularization/AHFMDownloadListServices)  
 3. [AHFMDownloadListManager](https://github.com/iOSModularization/AHFMDownloadListManager)  
 
-You can get to the Download List from only one place -- a [Show Page](#show-page).    
-It first probes episode's file sizes then store them into database.  
-And it's a download list, of course it can initiate download tasks.  
+这个下载页面首先会去获取音频文件的大小，然后用户可以选择下载哪个，或者下载所有。  
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/downloadList.gif)  
 
 Related Frameworks:  
-* [AHDownloadTool](https://github.com/ivsall2012/AHDownloadTool)  
+* [AHDownloadTool](https://github.com/ivsall2012/AHDownloadTool) -- 探测音频文件用  
 * [AHDownloader](https://github.com/ivsall2012/AHDownloader)  
 
 ### Download Center
@@ -217,27 +202,19 @@ Related Frameworks:
 2. [AHFMDownloadCenterServices](https://github.com/iOSModularization/AHFMDownloadCenterServices)  
 3. [AHFMDownloadCenterManager](https://github.com/iOSModularization/AHFMDownloadCenterManager)  
 
-The download Center consists of two parts: 1) left side downloaded page 2) right side downloading page  
+下载中心有2个部分可以切换: 1) 左边已下载控制器 2) 右边正在下载控制器   
 
-#### Downloaded Page
-The downloaded page displays shows that has more than one downloaded episodes.  
-(no gif demo provided)
-#### Downloading page
-The downloading page displays all currently downloading/pausing tasks, including those didn't finish last time.  
-Those two section pages are hosted by [AHCategoryView](https://github.com/ivsall2012/AHCategoryView).   
-(no gif demo provided)
-#### Caching Downloading Tasks  
-The following Gif shows that at some point, there were two tasks that got paused then the app was killed, then re-launch. And that two tasks were successfully cached then restored and finished the download tasks with complete files.  
-In fact, the tasks would get cached even without pausing first.  
+这2个控制器页面是用[AHCategoryView](https://github.com/ivsall2012/AHCategoryView)实现的。  
+  
+支持断点下载。就算应用被用户关闭了，也还是可以暂停然后缓存进度。  
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/downloadCenter_overview.gif)  
 
-#### Delete Shows and Episodes  
-Additionally for the downloaded page, You can delete the whole show's downloaded episodes or you tap into it and delete episodes from that page.  
+#### 直接删除整张专辑或者删除单个音频   
 
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/downloadCenter_deletion.gif)  
 
 Related framework:  
-* [AHCategoryView](https://github.com/ivsall2012/AHCategoryView) for downloaded/downloading section pages   
+* [AHCategoryView](https://github.com/ivsall2012/AHCategoryView)   
 * [AHDownloadTool](https://github.com/ivsall2012/AHDownloadTool)  
 * [AHDownloader](https://github.com/ivsall2012/AHDownloader)  
 
@@ -247,9 +224,7 @@ Related framework:
 2. [AHFMSearchVCServices](https://github.com/iOSModularization/AHFMSearchVCServices)  
 3. [AHFMSearchVCManager](https://github.com/iOSModularization/AHFMSearchVCManager)  
 
-The search page is for searching episodes. And it comes with trending terms from Twitter reportedly.  
-Though it can't do auto-complete search since the server just simply doesn't support it.  
-BTW, the JSON data is from www.audiosear.ch. Thank you for your free services!!  
+搜索页面，先是会加载热门关键字。每次搜索都会缓存到数据库。  
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/searchPage.gif)  
 
 
@@ -258,9 +233,7 @@ BTW, the JSON data is from www.audiosear.ch. Thank you for your free services!!
 2. [AHFMCategoryVCServices](https://github.com/iOSModularization/AHFMCategoryVCServices)  
 3. [AHFMCategoryVCManager](https://github.com/iOSModularization/AHFMCategoryVCManager)  
 
-The category page is a draggable UICollectionView and it's topic-based.   
-The order of the topics is cached into disk so that it wouldn't get lost.  
-
+主题分类页面，用UICollectionView和手势实现的一个自定义layout。
 
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/category.gif)  
 
@@ -269,9 +242,7 @@ The order of the topics is cached into disk so that it wouldn't get lost.
 2. [AHFMHistoryVCServices](https://github.com/iOSModularization/AHFMHistoryVCServices)  
 3. [AHFMHistoryVCManager](https://github.com/iOSModularization/AHFMHistoryVCManager)  
 
-The history records every episode played and their played progresses.  
-It only displays the most recent 15 of those episodes though.  
-It can be accessed through [Bottom Player](#buttom-player) and [User Center](#user-center)  
+播放历史页面会从本地数据库读取最近的15条播放历史。那么谁记录的这些历史呢？ 答案是[AHFMAudioPlayerManager](https://github.com/iOSModularization/AHFMAudioPlayerManager)记录的。它是和[AHAudioPlayer](https://github.com/ivsall2012/AHAudioPlayer)一起用的。  
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/history.gif)  
 
 
@@ -280,9 +251,7 @@ It can be accessed through [Bottom Player](#buttom-player) and [User Center](#us
 2. [AHFMUserCenterServices](https://github.com/iOSModularization/AHFMUserCenterServices)  
 3. [AHFMUserCenterManager](https://github.com/iOSModularization/AHFMUserCenterManager)  
 
-User center is a really simple page which consists of subscriptions, downloads and history.  
-
-The following Gif show that a show will be subscribed then deleted.  
+用户中心页面只展示下载、播放历史和订阅页面。   
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/userCenter.gif)  
 
 ### Episode List
@@ -290,13 +259,12 @@ The following Gif show that a show will be subscribed then deleted.
 2. [AHFMEpisodeListVCServices](https://github.com/iOSModularization/AHFMEpisodeListVCServices)  
 3. [AHFMEpisodeListVCManager](https://github.com/iOSModularization/AHFMEpisodeListVCManager)  
 
-Episode list is also a really simple page and serves as an episode picker for the Audio Player and Bottom Player.
-
+一个简单的音频清单页面。  
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/episodeList.gif) 
 
 
-## Related Frameworks
-The following 8 frameworks are made with native iOS frameworks fully.  
+## 相关Frameworks
+以下的8个frameworks，全部都只使用了iOS自带的库，没有使用任何第三方依赖。  
 * [AHDataModel](https://github.com/ivsall2012/AHDataModel) for all persistence layers  
 * [AHCategoryView](https://github.com/ivsall2012/AHCategoryView)  
 * [AHBannerView](https://github.com/ivsall2012/AHBannerView)  
@@ -307,8 +275,8 @@ The following 8 frameworks are made with native iOS frameworks fully.
 * [AHProgressSlider](https://github.com/ivsall2012/AHProgressSlider)  
 
 ## Author
-
-Andy Tong, ivsall2012@gmail.com
+童杰
+ivsall@qq.com
 
 ## License
 

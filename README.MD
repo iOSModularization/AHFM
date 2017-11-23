@@ -1,4 +1,4 @@
-[切换到简体中文]()
+[切换到简体中文](https://github.com/iOSModularization/AHFM)
 # AHFM
 ### Brief Demo(the Gif is little bit large, please wait)
 ![](https://github.com/iOSModularization/AHFM/blob/master/demo_gifs/overview.gif)
